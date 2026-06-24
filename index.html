@@ -3,286 +3,328 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hệ Thống Tư Vấn Tổ Hợp Môn Lớp 10 Thực Tế</title>
+    <title>Hệ Thống Tra Cứu Khối Thi Từ Môn Tự Chọn Lớp 10</title>
     <style>
         :root {
-            --primary-color: #0b2545;
-            --secondary-color: #134074;
-            --accent-color: #ee6c4d;
-            --bg-color: #f4f6f9;
-            --text-color: #1d2d44;
+            --blue-ts247: #007bff;
+            --bg-gray: #f8f9fa;
+            --border-color: #dee2e6;
+            --text-dark: #333;
         }
 
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: var(--bg-color);
-            color: var(--text-color);
+            font-family: Arial, sans-serif;
+            background-color: #f4f6f9;
+            color: var(--text-dark);
             margin: 0;
-            padding: 0;
-            line-height: 1.6;
+            padding: 20px;
         }
 
         .container {
-            max-width: 850px;
-            margin: 40px auto;
+            max-width: 900px;
+            margin: 20px auto;
+            background: #fff;
             padding: 30px;
-            background: #ffffff;
-            border-radius: 12px;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.08);
         }
 
-        header {
+        .title-box {
             text-align: center;
-            margin-bottom: 35px;
-            border-bottom: 2px solid #eef1f6;
-            padding-bottom: 20px;
+            border-bottom: 2px solid var(--blue-ts247);
+            padding-bottom: 15px;
+            margin-bottom: 25px;
         }
 
-        header h1 {
-            color: var(--primary-color);
-            font-size: 24px;
-            margin-bottom: 10px;
+        .title-box h2 {
+            color: var(--blue-ts247);
+            margin: 0;
+            font-size: 22px;
         }
 
-        .form-group {
+        /* Bảng hiển thị cấu trúc môn học của Bộ */
+        .program-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 30px;
+        }
+
+        .program-table th, .program-table td {
+            border: 1px solid var(--border-color);
+            padding: 12px;
+            text-align: center;
+            font-size: 15px;
+        }
+
+        .program-table th {
+            font-weight: bold;
+        }
+
+        .bg-blue { background-color: #e8f4fd; color: #1d4ed8; }
+        .bg-pink { background-color: #fff0f0; color: #d63031; }
+
+        /* Khung lựa chọn môn học */
+        .selection-box {
+            background-color: #fce4ec;
+            border: 1px solid #f8bbd0;
+            border-radius: 6px;
+            padding: 20px;
             margin-bottom: 20px;
         }
 
-        label {
-            font-weight: 600;
-            display: block;
-            margin-bottom: 8px;
-            color: var(--secondary-color);
+        .selection-title {
+            font-weight: bold;
+            color: #c2185b;
+            margin-bottom: 15px;
+            font-size: 16px;
         }
 
-        select {
-            width: 100%;
-            padding: 12px;
-            border: 1px solid #ccc;
-            border-radius: 6px;
-            font-size: 16px;
-            background-color: #fff;
+        .checkbox-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 15px;
+        }
+
+        .checkbox-label {
+            display: flex;
+            align-items: center;
+            background: #fff;
+            padding: 10px 15px;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: all 0.2s;
+        }
+
+        .checkbox-label:hover {
+            border-color: var(--blue-ts247);
+            background-color: #f0f7ff;
+        }
+
+        .checkbox-label input {
+            margin-right: 10px;
+            transform: scale(1.2);
+        }
+
+        .counter-info {
+            text-align: right;
+            font-weight: bold;
+            color: #666;
+            margin-top: 10px;
+            font-size: 14px;
         }
 
         .btn-search {
             display: block;
-            width: 100%;
-            padding: 14px;
-            background-color: var(--primary-color);
+            width: 200px;
+            margin: 25px auto 0;
+            padding: 12px;
+            background-color: var(--blue-ts247);
             color: white;
             border: none;
-            border-radius: 6px;
+            border-radius: 4px;
             font-size: 16px;
             font-weight: bold;
             cursor: pointer;
-            transition: background 0.3s;
-            margin-top: 25px;
+            transition: background 0.2s;
         }
 
         .btn-search:hover {
-            background-color: var(--secondary-color);
+            background-color: #0056b3;
         }
 
+        /* Khu vực hiển thị kết quả */
         .result-box {
             display: none;
             margin-top: 35px;
-            padding: 25px;
-            background: #fafbfc;
-            border: 1px solid #e4e9f0;
-            border-radius: 8px;
-        }
-
-        .result-title {
-            font-size: 18px;
-            font-weight: bold;
-            color: var(--primary-color);
-            margin-bottom: 20px;
-            border-left: 4px solid var(--accent-color);
-            padding-left: 10px;
-        }
-
-        .tag {
-            display: inline-block;
-            padding: 6px 12px;
-            border-radius: 4px;
-            font-size: 14px;
-            font-weight: 500;
-            margin: 5px;
-        }
-
-        .tag-compulsory { background: #ffe3e3; color: #c92a2a; }
-        .tag-elective { background: #e3faf2; color: #0ca678; font-weight: bold; }
-        .tag-free { background: #e8f4fd; color: #1d4ed8; }
-
-        .advice-card {
-            background: #fff;
-            border: 1px solid #e2e8f0;
-            padding: 20px;
+            border: 1px solid var(--blue-ts247);
             border-radius: 6px;
-            margin-top: 20px;
+            overflow: hidden;
         }
 
-        .advice-card h4 {
-            margin: 0 0 10px 0;
-            color: var(--accent-color);
+        .result-header {
+            background-color: var(--blue-ts247);
+            color: white;
+            padding: 12px 15px;
+            font-weight: bold;
+            font-size: 16px;
         }
 
-        .advice-card p {
-            margin: 0;
-            font-size: 15px;
-            color: #334155;
-            text-align: justify;
+        .result-body {
+            padding: 20px;
+            background: #fff;
+        }
+
+        .block-card {
+            border-bottom: 1px dashed var(--border-color);
+            padding-bottom: 15px;
+            margin-bottom: 15px;
+        }
+
+        .block-card:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+
+        .block-name {
+            font-size: 16px;
+            font-weight: bold;
+            color: #d63031;
+            margin-bottom: 5px;
+        }
+
+        .major-list {
+            font-size: 14px;
+            color: #555;
+            padding-left: 20px;
+            margin: 5px 0;
         }
     </style>
 </head>
 <body>
 
 <div class="container">
-    <header>
-        <h1>🧭 HỆ THỐNG ĐỊNH HƯỚNG TỔ HỢP MÔN LỚP 10 THỰC TẾ</h1>
-        <p>Phân tích thông minh dựa trên sự tối ưu hóa áp lực học tập và mục tiêu xét tuyển Đại học thực tế.</p>
-    </header>
-
-    <div class="form-group">
-        <label for="goalSelect">1. Chọn Khối thi Đại học hoặc Định hướng nghề nghiệp:</label>
-        <select id="goalSelect" onchange="initMajors()">
-            <option value="">-- Chọn định hướng mục tiêu --</option>
-            <option value="D01_social">Khối D01 hướng Xã hội (Báo chí, Ngôn ngữ, Luật...)</option>
-            <option value="C00_social">Khối C00 (Văn, Sử, Địa - Luật, Sư phạm, Quân đội...)</option>
-            <option value="A01_tech">Khối A01 (Toán, Lý, Anh - Kinh tế, Công nghệ...)</option>
-            <option value="A00_tech">Khối A00 (Toán, Lý, Hóa - Kỹ thuật, Công nghệ...)</option>
-            <option value="B00_medical">Khối B00 (Toán, Hóa, Sinh - Y dược, Khối ngành Sức khỏe)</option>
-        </select>
+    <div class="title-box">
+        <h2>CHƯƠNG TRÌNH THPT MỚI: ĐỊNH HƯỚNG TRA CỨU KHỐI XÉT TUYỂN</h2>
     </div>
 
-    <div class="form-group">
-        <label for="majorSelect">2. Ngành học / Mục tiêu cụ thể:</label>
-        <select id="majorSelect" disabled>
-            <option value="">-- Vui lòng chọn định hướng trước --</option>
-        </select>
+    <table class="program-table">
+        <thead>
+            <tr style="background-color: #f1f3f5;">
+                <th style="width: 50%; color: #1d4ed8;">8 MÔN BẮT BUỘC</th>
+                <th style="width: 50%; color: #c92a2a;">9 MÔN TỰ CHỌN</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td class="bg-blue">Toán, Ngữ văn, Tiếng Anh, Lịch sử, GD QP&AN, GD Thể chất, HĐTN & HN, GD Địa phương</td>
+                <td class="bg-pink">Vật lí, Hóa học, Sinh học, Tin học, Địa lí, GD Kinh tế & Pháp luật, Công nghệ, Âm nhạc, Mỹ thuật</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="selection-box">
+        <div class="selection-title">👉 Hãy chọn đúng 4 môn tự chọn dưới đây:</div>
+        <div class="checkbox-grid">
+            <label class="checkbox-label"><input type="checkbox" value="Vật lí" onchange="checkLimit(this)"> Vật lí</label>
+            <label class="checkbox-label"><input type="checkbox" value="Hóa học" onchange="checkLimit(this)"> Hóa học</label>
+            <label class="checkbox-label"><input type="checkbox" value="Sinh học" onchange="checkLimit(this)"> Sinh học</label>
+            <label class="checkbox-label"><input type="checkbox" value="Tin học" onchange="checkLimit(this)"> Tin học</label>
+            <label class="checkbox-label"><input type="checkbox" value="Địa lí" onchange="checkLimit(this)"> Địa lí</label>
+            <label class="checkbox-label"><input type="checkbox" value="GD Kinh tế & Pháp luật" onchange="checkLimit(this)"> GD Kinh tế & Pháp luật</label>
+            <label class="checkbox-label"><input type="checkbox" value="Công nghệ" onchange="checkLimit(this)"> Công nghệ</label>
+            <label class="checkbox-label"><input type="checkbox" value="Âm nhạc" onchange="checkLimit(this)"> Âm nhạc</label>
+            <label class="checkbox-label"><input type="checkbox" value="Mỹ thuật" onchange="checkLimit(this)"> Mỹ thuật</label>
+        </div>
+        <div class="counter-info" id="counterLabel">Đã chọn: 0 / 4 môn</div>
     </div>
 
-    <button class="btn-search" onclick="renderRealAdvice()">Phân Tích Lộ Trình Tối Ưu</button>
+    <button class="btn-search" onclick="findMajorsAndBlocks()">🔍 Tìm kiếm</button>
 
     <div id="resultBox" class="result-box">
-        <div class="result-title" id="resTitle">KẾT QUẢ TƯ VẤN THỰC TẾ</div>
-
-        <p><strong>1. Các môn bắt buộc (Học sinh nào cũng phải học):</strong></p>
-        <div id="compulsoryArea"></div>
-
-        <p style="margin-top: 20px;"><strong>2. Gợi ý lựa chọn 4 môn tự chọn tại trường THPT (Chiến lược tối ưu):</strong></p>
-        <div id="electiveArea"></div>
-
-        <div class="advice-card">
-            <h4>💡 Phân tích chiến lược giảm tải & Lộ trình thực tế:</h4>
-            <p id="realAdviceText"></p>
-        </div>
+        <div class="result-header">🎯 CÁC KHỐI THI & NGÀNH ĐẠI HỌC BẠN ĐỦ ĐIỀU KIỆN XÉT TUYỂN:</div>
+        <div class="result-body" id="resultContent">
+            </div>
     </div>
 </div>
 
 <script>
-    const realDatabase = {
-        D01_social: {
-            majors: ["Báo chí & Truyền thông", "Ngôn ngữ Anh/Trung/Hàn", "Quan hệ công chúng", "Quản trị khách sạn"],
-            electives: [
-                { name: "Tin học (Bổ trợ kỹ năng số rất cần cho Truyền thông)", type: "elective" },
-                { name: "Lịch sử hoặc Địa lí (Chọn 1 môn xã hội nhẹ nhàng)", type: "elective" },
-                { name: "2 Môn tự chọn bất kỳ dễ lấy điểm cao (Nên chọn theo thế mạnh trường)", type: "free" }
-            ],
-            advice: "Vì 3 môn xét tuyển chính (Toán, Văn, Anh) ĐÃ NẰM TRONG NHÓM BẮT BUỘC, áp lực lớn nhất của học sinh D01 là đạt điểm cao 3 môn này và luyện chứng chỉ IELTS từ sớm. Ở phần 4 môn tự chọn, chiến lược thông minh là chọn những môn nhẹ nhàng nhất có thể (hoặc Tin học để bổ trợ kỹ năng làm truyền thông) nhằm mục đích làm đẹp học bạ và dồn toàn lực ôn luyện 3 môn mũi nhọn kia."
-        },
-        C00_social: {
-            majors: ["Luật học / Luật kinh tế", "Sư phạm Lịch sử - Địa lí", "Khối ngành Quân đội / Công an"],
-            electives: [
-                { name: "Lịch sử (Bắt buộc để thi khối C)", type: "elective" },
-                { name: "Địa lí (Bắt buộc để thi khối C)", type: "elective" },
-                { name: "Giáo dục Kinh tế và Pháp luật (Bổ trợ cực tốt cho ngành Luật)", type: "elective" },
-                { name: "1 Môn tự chọn bất kỳ để giảm tải (Ví dụ: Công nghệ hoặc Tin học)", type: "free" }
-            ],
-            advice: "Do môn Ngữ văn đã bắt buộc, học sinh bắt buộc phải chọn cặp đôi Lịch sử + Địa lí trong phần tự chọn để đủ bộ ba khối C00. Môn thứ 3 nên là Giáo dục Kinh tế & Pháp luật nếu theo ngành Luật để tạo lợi thế tư duy sớm."
-        },
-        A01_tech: {
-            majors: ["Kinh tế quốc tế / Marketing", "Công nghệ thông tin", "Tài chính ngân hàng"],
-            electives: [
-                { name: "Vật lí (Bắt buộc để thi khối A01)", type: "elective" },
-                { name: "Tin học (Cần thiết cho khối Công nghệ/Kinh tế số)", type: "elective" },
-                { name: "2 Môn tự chọn bất kỳ nhẹ nhất của trường để giảm tải", type: "free" }
-            ],
-            advice: "Toán và Tiếng Anh đã học ở nhóm bắt buộc. Học sinh thi khối A01 chỉ cần chọn duy nhất môn Vật lí ở nhóm tự chọn là đủ cấu trúc khối thi. 3 môn tự chọn còn lại nên ưu tiên các môn nhẹ nhàng, dễ thở để giữ điểm học bạ (GPA) thật đẹp phục vụ xét tuyển sớm."
-        },
-        A00_tech: {
-            majors: ["Khoa học máy tính / IT", "Kỹ thuật ô tô / Cơ khí", "Tự động hóa"],
-            electives: [
-                { name: "Vật lí (Bắt buộc)", type: "elective" },
-                { name: "Hóa học (Bắt buộc)", type: "elective" },
-                { name: "Tin học (Bổ trợ rất mạnh cho IT)", type: "elective" },
-                { name: "1 Môn tự chọn bất kỳ dễ học nhất", type: "free" }
-            ],
-            advice: "Học sinh bắt buộc phải chọn cặp Vật lí + Hóa học để khớp với môn Toán bắt buộc tạo thành khối A00. Nhóm ngành này cực kỳ nặng, nên chọn thêm Tin học để làm quen tư duy lập trình sớm nếu theo ngành Công nghệ thông tin."
-        },
-        B00_medical: {
-            majors: ["Y đa khoa / Răng Hàm Mặt", "Dược học", "Công nghệ sinh học"],
-            electives: [
-                { name: "Hóa học (Bắt buộc)", type: "elective" },
-                { name: "Sinh học (Bắt buộc)", type: "elective" },
-                { name: "2 Môn tự chọn bất kỳ có xu hướng chấm điểm dễ tại trường", type: "free" }
-            ],
-            advice: "Toán đã có sẵn ở nhóm bắt buộc, học sinh bắt buộc phải chọn Hóa học + Sinh học ở nhóm tự chọn để hoàn thành khối B00. Điểm chuẩn Y Dược rất cao, 2 môn tự chọn còn lại tuyệt đối nên chọn những môn dễ thở nhất để tránh bị phân tâm kéo tụt điểm trung bình học bạ."
-        }
-    };
-
-    const compulsoryList = ["Ngữ văn", "Toán", "Ngoại ngữ 1", "Giáo dục thể chất", "Giáo dục quốc phòng và an ninh", "Hoạt động trải nghiệm, hướng nghiệp", "Nội dung giáo dục của địa phương"];
-
-    function initMajors() {
-        const goal = document.getElementById("goalSelect").value;
-        const majorSelect = document.getElementById("majorSelect");
-        majorSelect.innerHTML = "";
+    // Giới hạn học sinh chỉ được tích chọn tối đa 4 môn tự chọn
+    function checkLimit(checkbox) {
+        const checkboxes = document.querySelectorAll('.checkbox-grid input[type="checkbox"]');
+        const checkedCount = Array.from(checkboxes).filter(i => i.checked).length;
         
-        if(!goal) {
-            majorSelect.innerHTML = '<option value="">-- Vui lòng chọn định hướng trước --</option>';
-            majorSelect.disabled = true;
+        if (checkedCount > 4) {
+            checkbox.checked = false;
+            alert("Theo quy chế của Bộ GD&ĐT, học sinh chỉ được chọn tối đa 4 môn tự chọn!");
             return;
         }
         
-        majorSelect.disabled = false;
-        realDatabase[goal].majors.forEach(m => {
-            let op = document.createElement("option");
-            op.value = m; op.textContent = m;
-            majorSelect.appendChild(op);
-        });
+        document.getElementById("counterLabel").textContent = `Đã chọn: ${Array.from(checkboxes).filter(i => i.checked).length} / 4 môn`;
     }
 
-    function renderRealAdvice() {
-        const goal = document.getElementById("goalSelect").value;
-        const major = document.getElementById("majorSelect").value;
-        if(!goal || !major) {
-            alert("Vui lòng chọn đầy đủ thông tin!");
+    function findMajorsAndBlocks() {
+        const checkboxes = document.querySelectorAll('.checkbox-grid input[type="checkbox"]');
+        const selectedFields = Array.from(checkboxes).filter(i => i.checked).map(i => i.value);
+
+        if (selectedFields.length < 4) {
+            alert("Vui lòng chọn đủ 4 môn để hệ thống tính toán chính xác nhất!");
             return;
         }
 
-        const data = realDatabase[goal];
-        document.getElementById("resTitle").textContent = `CHIẾN LƯỢC TỐI ƯU: ĐỊNH HƯỚNG NGÀNH ${major.toUpperCase()}`;
+        const resultContent = document.getElementById("resultContent");
+        resultContent.innerHTML = "";
 
-        // Render bắt buộc
-        const compArea = document.getElementById("compulsoryArea");
-        compArea.innerHTML = "";
-        compulsoryList.forEach(s => {
-            compArea.innerHTML += `<span class="tag tag-compulsory">${s}</span>`;
+        let accessibleBlocks = [];
+
+        // Thuật toán kiểm tra điều kiện logic khối thi (Toán, Văn, Anh mặc định có sẵn ở nhóm bắt buộc)
+        // Kiểm tra Khối A00
+        if (selectedFields.includes("Vật lí") && selectedFields.includes("Hóa học")) {
+            accessibleBlocks.push({
+                name: "Khối A00 (Toán, Vật lí, Hóa học)",
+                majors: ["Công nghệ thông tin, Khoa học máy tính", "Kỹ thuật Ô tô, Điện tử viễn thông, Cơ khí", "Kinh tế đối ngoại, Tài chính quốc tế"]
+            });
+        }
+        // Kiểm tra Khối A01
+        if (selectedFields.includes("Vật lí")) {
+            accessibleBlocks.push({
+                name: "Khối A01 (Toán, Vật lí, Tiếng Anh) - *Tối ưu do Anh đã bắt buộc*",
+                majors: ["Quản trị kinh doanh, Marketing số", "Kinh doanh quốc tế, Logistics", "Hệ thống thông tin quản lý"]
+            });
+        }
+        // Kiểm tra Khối B00
+        if (selectedFields.includes("Hóa học") && selectedFields.includes("Sinh học")) {
+            accessibleBlocks.push({
+                name: "Khối B00 (Toán, Hóa học, Sinh học)",
+                majors: ["Y đa khoa, Răng - Hàm - Mặt, Dược học", "Kỹ thuật xét nghiệm y học, Điều dưỡng", "Công nghệ sinh học, Công nghệ thực phẩm"]
+            });
+        }
+        // Kiểm tra Khối C00
+        if (selectedFields.includes("Địa lí")) { // Vì Văn và Sử đã nằm trong nhóm bắt buộc mới
+            accessibleBlocks.push({
+                name: "Khối C00 (Ngữ văn, Lịch sử, Địa lí) - *Tối ưu do Văn & Sử đã bắt buộc*",
+                majors: ["Báo chí & Truyền thông đa phương tiện", "Luật học, Luật kinh tế", "Sư phạm Lịch sử - Địa lí, Du lịch"]
+            });
+        }
+        
+        // Khối quốc dân D01 lúc nào cũng khả dụng vì Toán, Văn, Anh đều bắt buộc
+        accessibleBlocks.push({
+            name: "Khối D01 (Toán, Ngữ văn, Tiếng Anh) - *Mặc định khả dụng với mọi tổ hợp*",
+            majors: ["Ngôn ngữ Anh/Trung/Hàn", "Quan hệ công chúng, Tổ chức sự kiện", "Quản trị dịch vụ du lịch và lữ hành"]
         });
 
-        // Render tự chọn thực tế
-        const electArea = document.getElementById("electiveArea");
-        electArea.innerHTML = "";
-        data.electives.forEach(e => {
-            let cls = e.type === "elective" ? "tag-elective" : "tag-free";
-            electArea.innerHTML += `<span class="tag ${cls}">${e.name}</span>`;
+        // Xuất dữ liệu ra giao diện bảng card
+        accessibleBlocks.forEach(block => {
+            let card = document.createElement("div");
+            card.className = "block-card";
+            
+            let blockName = document.createElement("div");
+            blockName.className = "block-name";
+            blockName.textContent = `🎯 ${block.name}`;
+            card.appendChild(blockName);
+
+            let label = document.createElement("strong");
+            label.style.fontSize = "13px";
+            label.style.color = "#666";
+            label.textContent = "Các ngành nghề mũi nhọn tương ứng:";
+            card.appendChild(label);
+
+            let ul = document.createElement("ul");
+            ul.className = "major-list";
+            block.majors.forEach(m => {
+                let li = document.createElement("li");
+                li.textContent = m;
+                ul.appendChild(li);
+            });
+            card.appendChild(ul);
+            resultContent.appendChild(card);
         });
 
-        // Đổ lời khuyên thực tế
-        document.getElementById("realAdviceText").textContent = data.advice;
-
-        document.getElementById("resultBox").style.display = "block";
-        document.getElementById("resultBox").scrollIntoView({ behavior: 'smooth' });
+        const resultBox = document.getElementById("resultBox");
+        resultBox.style.display = "block";
+        resultBox.scrollIntoView({ behavior: 'smooth' });
     }
 </script>
 </body>
