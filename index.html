@@ -6,7 +6,7 @@
     <title>IVY IELTS - Hệ Thống Tra Cứu Khối Thi Từ Môn Tự Chọn Lớp 10</title>
     <style>
         :root {
-            --ivy-red: #bd0000; /* Màu đỏ đậm chuẩn thương hiệu IVY */
+            --ivy-red: #bd0000;
             --ivy-red-hover: #990000;
             --bg-gray: #f8f9fa;
             --border-color: #e9ecef;
@@ -31,7 +31,6 @@
             box-shadow: 0 4px 20px rgba(0,0,0,0.05);
         }
 
-        /* Khu vực Header tích hợp thương hiệu tinh tế */
         .brand-header {
             text-align: center;
             border-bottom: 2px solid var(--ivy-red);
@@ -60,7 +59,6 @@
             margin: 8px 0 0 0;
         }
 
-        /* Bảng môn học của Bộ thiết kế lại gọn gàng */
         .program-table {
             width: 100%;
             border-collapse: collapse;
@@ -85,10 +83,8 @@
             letter-spacing: 0.5px;
         }
 
-        .bg-fixed { background-color: #fff; color: var(--text-dark); }
-        .bg-choose { background-color: #fff; color: var(--text-dark); }
+        .bg-fixed, .bg-choose { background-color: #fff; color: var(--text-dark); }
 
-        /* Khung tương tác chọn môn */
         .selection-box {
             background-color: #fff5f5;
             border: 1px solid #fed7d7;
@@ -102,9 +98,6 @@
             color: var(--ivy-red);
             margin-bottom: 18px;
             font-size: 15px;
-            display: flex;
-            align-items: center;
-            gap: 6px;
         }
 
         .checkbox-grid {
@@ -134,7 +127,7 @@
         .checkbox-label input {
             margin-right: 12px;
             transform: scale(1.15);
-            accent-color: var(--ivy-red); /* Đổi màu ô checkbox thành đỏ đồng bộ */
+            accent-color: var(--ivy-red);
         }
 
         .counter-info {
@@ -166,7 +159,6 @@
             background-color: var(--ivy-red-hover);
         }
 
-        /* Khu vực hiển thị kết quả tư vấn nâng cấp chuyên nghiệp */
         .result-box {
             display: none;
             margin-top: 35px;
@@ -222,8 +214,8 @@
 
 <div class="container">
     <div class="brand-header">
-        <img src="https://thanhcongvyieltsvaduhoc-commits.github.io/ivyieltsthaibinh-tu-van-to-hop-vao-lop-10/image_61cb44.png" onerror="this.src='image_61cb44.png'" alt="IVY IELTS Logo" class="brand-logo">
-        <h2>HỆ THỐNG TRA CỨU KHỐI XÈT TUYỂN & ĐỊNH HƯỚNG LỚP 10</h2>
+        <img src="image_61cb44.png" alt="IVY IELTS Logo" class="brand-logo">
+        <h2>HỆ THỐNG TRA CỨU KHỐI XÉT TUYỂN & ĐỊNH HƯỚNG LỚP 10</h2>
         <p>Phát triển bởi Đội ngũ Chuyên gia Khảo thí và Tuyển sinh IVY IELTS</p>
     </div>
 
@@ -294,28 +286,24 @@
 
         let accessibleBlocks = [];
 
-        // Kiểm tra Khối A00
         if (selectedFields.includes("Vật lí") && selectedFields.includes("Hóa học")) {
             accessibleBlocks.push({
                 name: "Khối A00 (Toán, Vật lí, Hóa học)",
                 majors: ["Công nghệ thông tin, Kỹ thuật phần mềm", "Kỹ thuật Ô tô, Điện tử viễn thông, Cơ điện tử", "Kinh tế đối ngoại, Tài chính quốc tế"]
             });
         }
-        // Kiểm tra Khối A01
         if (selectedFields.includes("Vật lí")) {
             accessibleBlocks.push({
                 name: "Khối A01 (Toán, Vật lí, Tiếng Anh) -> Rất tối ưu tại IVY",
                 majors: ["Kinh doanh quốc tế, Thương mại điện tử", "Marketing số, Quản trị chuỗi cung ứng (Logistics)", "Hệ thống thông tin quản lý"]
             });
         }
-        // Kiểm tra Khối B00
         if (selectedFields.includes("Hóa học") && selectedFields.includes("Sinh học")) {
             accessibleBlocks.push({
                 name: "Khối B00 (Toán, Hóa học, Sinh học)",
                 majors: ["Y khoa, Răng - Hàm - Mặt, Dược học", "Kỹ thuật xét nghiệm y học, Điều dưỡng chuyên nghiệp", "Công nghệ sinh học, Kỹ thuật thực phẩm"]
             });
         }
-        // Kiểm tra Khối C00
         if (selectedFields.includes("Địa lí")) { 
             accessibleBlocks.push({
                 name: "Khối C00 (Ngữ văn, Lịch sử, Địa lí) -> Mở rộng cơ hội học bạ",
@@ -323,7 +311,6 @@
             });
         }
         
-        // Khối D01 luôn mặc định
         accessibleBlocks.push({
             name: "Khối D01 (Toán, Ngữ văn, Tiếng Anh) -> Lợi thế tuyệt đối khi sở hữu IELTS sớm",
             majors: ["Ngôn ngữ Anh, Biên phiên dịch quốc tế", "Quan hệ quốc tế, Ngoại giao, Tổ chức sự kiện", "Quản trị khách sạn / nhà hàng tiêu chuẩn quốc tế"]
@@ -355,7 +342,6 @@
             resultContent.appendChild(card);
         });
 
-        // Thêm thông điệp định hướng IELTS cuối bảng kết quả
         let ieltsBanner = document.createElement("div");
         ieltsBanner.style.marginTop = "20px";
         ieltsBanner.style.padding = "15px";
@@ -368,7 +354,7 @@
         resultContent.appendChild(ieltsBanner);
 
         const resultBox = document.getElementById("resultBox");
-        resultBox.style.style.display = "block";
+        resultBox.style.display = "block";
         resultBox.scrollIntoView({ behavior: 'smooth' });
     }
 </script>
