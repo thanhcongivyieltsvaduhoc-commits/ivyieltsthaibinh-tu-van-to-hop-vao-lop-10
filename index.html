@@ -148,4 +148,229 @@
         .btn-search {
             display: block;
             width: 100%;
-            max
+            max-width: 240px;
+            margin: 30px auto 0;
+            padding: 14px;
+            background-color: var(--ivy-red);
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: background 0.2s ease;
+            box-shadow: 0 4px 6px rgba(189, 0, 0, 0.15);
+        }
+
+        .btn-search:hover {
+            background-color: var(--ivy-red-hover);
+        }
+
+        /* Khu vực hiển thị kết quả tư vấn nâng cấp chuyên nghiệp */
+        .result-box {
+            display: none;
+            margin-top: 35px;
+            border: 1px solid var(--ivy-red);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+        }
+
+        .result-header {
+            background-color: var(--ivy-red);
+            color: white;
+            padding: 14px 20px;
+            font-weight: 700;
+            font-size: 15px;
+            letter-spacing: 0.5px;
+        }
+
+        .result-body {
+            padding: 25px;
+            background: #fff;
+        }
+
+        .block-card {
+            border-bottom: 1px dashed #e2e8f0;
+            padding-bottom: 20px;
+            margin-bottom: 20px;
+        }
+
+        .block-card:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+
+        .block-name {
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--ivy-red);
+            margin-bottom: 8px;
+        }
+
+        .major-list {
+            font-size: 14px;
+            color: #4a5568;
+            padding-left: 20px;
+            margin: 8px 0;
+            line-height: 1.6;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="brand-header">
+        <img src="https://thanhcongvyieltsvaduhoc-commits.github.io/ivyieltsthaibinh-tu-van-to-hop-vao-lop-10/image_61cb44.png" onerror="this.src='image_61cb44.png'" alt="IVY IELTS Logo" class="brand-logo">
+        <h2>HỆ THỐNG TRA CỨU KHỐI XÈT TUYỂN & ĐỊNH HƯỚNG LỚP 10</h2>
+        <p>Phát triển bởi Đội ngũ Chuyên gia Khảo thí và Tuyển sinh IVY IELTS</p>
+    </div>
+
+    <table class="program-table">
+        <thead>
+            <tr>
+                <th style="width: 50%;">8 Môn học & Hoạt động bắt buộc</th>
+                <th style="width: 50%;">9 Môn học lựa chọn (Chọn 4)</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td class="bg-fixed">Toán, Ngữ văn, Tiếng Anh, Lịch sử, GD QP&AN, GD Thể chất, HĐTN & HN, GD Địa phương</td>
+                <td class="bg-choose">Vật lí, Hóa học, Sinh học, Tin học, Địa lí, GD Kinh tế & Pháp luật, Công nghệ, Âm nhạc, Mỹ thuật</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="selection-box">
+        <div class="selection-title">🎯 Phụ huynh/Học sinh vui lòng tích chọn đúng 4 môn lựa chọn:</div>
+        <div class="checkbox-grid">
+            <label class="checkbox-label"><input type="checkbox" value="Vật lí" onchange="checkLimit(this)"> Vật lí</label>
+            <label class="checkbox-label"><input type="checkbox" value="Hóa học" onchange="checkLimit(this)"> Hóa học</label>
+            <label class="checkbox-label"><input type="checkbox" value="Sinh học" onchange="checkLimit(this)"> Sinh học</label>
+            <label class="checkbox-label"><input type="checkbox" value="Tin học" onchange="checkLimit(this)"> Tin học</label>
+            <label class="checkbox-label"><input type="checkbox" value="Địa lí" onchange="checkLimit(this)"> Địa lí</label>
+            <label class="checkbox-label"><input type="checkbox" value="GD Kinh tế & Pháp luật" onchange="checkLimit(this)"> GD Kinh tế & Pháp luật</label>
+            <label class="checkbox-label"><input type="checkbox" value="Công nghệ" onchange="checkLimit(this)"> Công nghệ</label>
+            <label class="checkbox-label"><input type="checkbox" value="Âm nhạc" onchange="checkLimit(this)"> Âm nhạc</label>
+            <label class="checkbox-label"><input type="checkbox" value="Mỹ thuật" onchange="checkLimit(this)"> Mỹ thuật</label>
+        </div>
+        <div class="counter-info" id="counterLabel">Đã chọn: 0 / 4 môn</div>
+    </div>
+
+    <button class="btn-search" onclick="findMajorsAndBlocks()">🔍 Bắt đầu phân tích</button>
+
+    <div id="resultBox" class="result-box">
+        <div class="result-header">📑 PHƯƠNG ÁN XÉT TUYỂN ĐẠI HỌC KHẢ THI DÀNH CHO TỔ HỢP NÀY:</div>
+        <div class="result-body" id="resultContent"></div>
+    </div>
+</div>
+
+<script>
+    function checkLimit(checkbox) {
+        const checkboxes = document.querySelectorAll('.checkbox-grid input[type="checkbox"]');
+        const checkedCount = Array.from(checkboxes).filter(i => i.checked).length;
+        
+        if (checkedCount > 4) {
+            checkbox.checked = false;
+            alert("Theo quy chế của Bộ GD&ĐT, học sinh chỉ được chọn đúng 4 môn lựa chọn!");
+            return;
+        }
+        
+        document.getElementById("counterLabel").textContent = `Đã chọn: ${Array.from(checkboxes).filter(i => i.checked).length} / 4 môn`;
+    }
+
+    function findMajorsAndBlocks() {
+        const checkboxes = document.querySelectorAll('.checkbox-grid input[type="checkbox"]');
+        const selectedFields = Array.from(checkboxes).filter(i => i.checked).map(i => i.value);
+
+        if (selectedFields.length < 4) {
+            alert("Vui lòng tích chọn đầy đủ 4 môn lựa chọn để nhận phân tích chi tiết!");
+            return;
+        }
+
+        const resultContent = document.getElementById("resultContent");
+        resultContent.innerHTML = "";
+
+        let accessibleBlocks = [];
+
+        // Kiểm tra Khối A00
+        if (selectedFields.includes("Vật lí") && selectedFields.includes("Hóa học")) {
+            accessibleBlocks.push({
+                name: "Khối A00 (Toán, Vật lí, Hóa học)",
+                majors: ["Công nghệ thông tin, Kỹ thuật phần mềm", "Kỹ thuật Ô tô, Điện tử viễn thông, Cơ điện tử", "Kinh tế đối ngoại, Tài chính quốc tế"]
+            });
+        }
+        // Kiểm tra Khối A01
+        if (selectedFields.includes("Vật lí")) {
+            accessibleBlocks.push({
+                name: "Khối A01 (Toán, Vật lí, Tiếng Anh) -> Rất tối ưu tại IVY",
+                majors: ["Kinh doanh quốc tế, Thương mại điện tử", "Marketing số, Quản trị chuỗi cung ứng (Logistics)", "Hệ thống thông tin quản lý"]
+            });
+        }
+        // Kiểm tra Khối B00
+        if (selectedFields.includes("Hóa học") && selectedFields.includes("Sinh học")) {
+            accessibleBlocks.push({
+                name: "Khối B00 (Toán, Hóa học, Sinh học)",
+                majors: ["Y khoa, Răng - Hàm - Mặt, Dược học", "Kỹ thuật xét nghiệm y học, Điều dưỡng chuyên nghiệp", "Công nghệ sinh học, Kỹ thuật thực phẩm"]
+            });
+        }
+        // Kiểm tra Khối C00
+        if (selectedFields.includes("Địa lí")) { 
+            accessibleBlocks.push({
+                name: "Khối C00 (Ngữ văn, Lịch sử, Địa lí) -> Mở rộng cơ hội học bạ",
+                majors: ["Báo chí & Truyền thông đa phương tiện, Quan hệ công chúng (PR)", "Luật học, Luật kinh tế", "Sư phạm, Quản trị dịch vụ Du lịch & Lữ hành"]
+            });
+        }
+        
+        // Khối D01 luôn mặc định
+        accessibleBlocks.push({
+            name: "Khối D01 (Toán, Ngữ văn, Tiếng Anh) -> Lợi thế tuyệt đối khi sở hữu IELTS sớm",
+            majors: ["Ngôn ngữ Anh, Biên phiên dịch quốc tế", "Quan hệ quốc tế, Ngoại giao, Tổ chức sự kiện", "Quản trị khách sạn / nhà hàng tiêu chuẩn quốc tế"]
+        });
+
+        accessibleBlocks.forEach(block => {
+            let card = document.createElement("div");
+            card.className = "block-card";
+            
+            let blockName = document.createElement("div");
+            blockName.className = "block-name";
+            blockName.textContent = `⚡ ${block.name}`;
+            card.appendChild(blockName);
+
+            let label = document.createElement("strong");
+            label.style.fontSize = "13px";
+            label.style.color = "#4a5568";
+            label.textContent = "Các nhóm ngành định hướng mũi nhọn:";
+            card.appendChild(label);
+
+            let ul = document.createElement("ul");
+            ul.className = "major-list";
+            block.majors.forEach(m => {
+                let li = document.createElement("li");
+                li.textContent = m;
+                ul.appendChild(li);
+            });
+            card.appendChild(ul);
+            resultContent.appendChild(card);
+        });
+
+        // Thêm thông điệp định hướng IELTS cuối bảng kết quả
+        let ieltsBanner = document.createElement("div");
+        ieltsBanner.style.marginTop = "20px";
+        ieltsBanner.style.padding = "15px";
+        ieltsBanner.style.backgroundColor = "rgba(189, 0, 0, 0.05)";
+        ieltsBanner.style.borderLeft = "4px solid var(--ivy-red)";
+        ieltsBanner.style.borderRadius = "4px";
+        ieltsBanner.style.fontSize = "13.5px";
+        ieltsBanner.style.color = "#2d3748";
+        ieltsBanner.innerHTML = "💡 <strong>Khuyến nghị chiến lược từ IVY IELTS:</strong> Bất kể học sinh lựa chọn tổ hợp môn nào, việc tích lũy chứng chỉ <strong>IELTS từ 5.5 - 6.5+</strong> từ sớm trong giai đoạn cấp 3 hiện nay đều mang lại đặc quyền quy đổi điểm 10 học bạ hoặc tuyển thẳng trực tiếp vào hơn 150 trường Đại học danh tiếng.";
+        resultContent.appendChild(ieltsBanner);
+
+        const resultBox = document.getElementById("resultBox");
+        resultBox.style.style.display = "block";
+        resultBox.scrollIntoView({ behavior: 'smooth' });
+    }
+</script>
+</body>
+</html>
