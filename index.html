@@ -3,14 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hệ Thống Tư Vấn Tổ Hợp Môn Lớp 10 Học Đường</title>
+    <title>Hệ Thống Định Hướng Tổ Hợp Môn Lớp 10 & Lộ Trình Đại Học</title>
     <style>
         :root {
-            --primary-color: #2b5a8f;
-            --secondary-color: #4a90e2;
-            --accent-color: #ff6b6b;
-            --text-color: #333;
-            --bg-color: #f4f7f6;
+            --primary-color: #1e3d59;
+            --secondary-color: #17b978;
+            --accent-color: #ff6f3c;
+            --bg-color: #f5f7fa;
+            --text-color: #222831;
         }
 
         body {
@@ -23,118 +23,162 @@
         }
 
         .container {
-            max-width: 900px;
+            max-width: 800px;
             margin: 40px auto;
-            padding: 20px;
+            padding: 30px;
             background: #ffffff;
-            border-radius: 12px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
         }
 
         header {
             text-align: center;
-            margin-bottom: 40px;
-            border-bottom: 2px solid #eee;
-            padding-bottom: 20px;
+            margin-bottom: 35px;
         }
 
         header h1 {
             color: var(--primary-color);
-            font-size: 24px;
-            margin-bottom: 10px;
+            font-size: 26px;
+            font-weight: 700;
+            margin-bottom: 12px;
         }
 
         header p {
             color: #666;
             font-size: 15px;
+            max-width: 600px;
+            margin: 0 auto;
         }
 
-        .step-box {
-            margin-bottom: 30px;
+        .form-group {
+            margin-bottom: 25px;
         }
 
         label {
             font-weight: 600;
             display: block;
-            margin-bottom: 10px;
+            margin-bottom: 8px;
             color: var(--primary-color);
+            font-size: 15px;
         }
 
         select {
             width: 100%;
-            padding: 12px;
-            border: 1px solid #ccc;
-            border-radius: 8px;
+            padding: 14px;
+            border: 1px solid #dcdcdc;
+            border-radius: 10px;
             font-size: 16px;
             background-color: #fff;
-            transition: all 0.3s;
+            color: var(--text-color);
+            transition: all 0.3s ease;
         }
 
         select:focus {
-            border-color: var(--secondary-color);
+            border-color: var(--primary-color);
             outline: none;
-            box-shadow: 0 0 5px rgba(74, 144, 226, 0.3);
+            box-shadow: 0 0 0 3px rgba(30, 61, 89, 0.1);
         }
 
         .btn-submit {
             display: block;
             width: 100%;
-            padding: 14px;
+            padding: 15px;
             background-color: var(--primary-color);
             color: white;
             border: none;
-            border-radius: 8px;
+            border-radius: 10px;
             font-size: 16px;
-            font-weight: bold;
+            font-weight: 600;
             cursor: pointer;
-            transition: background 0.3s;
-            margin-top: 20px;
+            transition: background 0.3s ease;
+            margin-top: 30px;
         }
 
         .btn-submit:hover {
-            background-color: var(--secondary-color);
+            background-color: #13293d;
         }
 
-        /* Thẻ kết quả thiết kế dạng Card trực quan */
         .result-section {
             margin-top: 40px;
             display: none;
-            padding: 25px;
-            background: #f9fbfd;
-            border-left: 5px solid var(--secondary-color);
-            border-radius: 4px 8px 8px 4px;
+            padding: 30px;
+            background: #fdfdfd;
+            border: 1px solid #eef2f5;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.02);
         }
 
         .result-title {
             font-size: 18px;
-            font-weight: bold;
+            font-weight: 700;
             color: var(--primary-color);
-            margin-bottom: 15px;
+            border-bottom: 2px solid #f1f1f1;
+            padding-bottom: 12px;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .subject-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 20px;
         }
 
         .subject-tag {
-            display: inline-block;
-            background: #e1ecf4;
-            color: #39739d;
-            padding: 6px 12px;
-            border-radius: 20px;
-            font-size: 14px;
-            font-weight: 500;
-            margin: 5px;
-        }
-
-        .compulsory {
-            background: #ffe3e3;
-            color: #c92a2a;
-        }
-
-        .advice-box {
-            margin-top: 20px;
-            background: #fff;
-            padding: 15px;
-            border: 1px dashed #abc;
+            background: #eef2f7;
+            color: #334e68;
+            padding: 8px 16px;
             border-radius: 8px;
             font-size: 14px;
+            font-weight: 500;
+        }
+
+        .subject-tag.compulsory {
+            background: #fff0f0;
+            color: #d63031;
+            border: 1px solid #ffcbd1;
+        }
+
+        .subject-tag.recommended {
+            background: #e3faf2;
+            color: #0ca678;
+            border: 1px solid #96f2d7;
+            font-weight: 600;
+        }
+
+        .info-card {
+            background: #f8f9fa;
+            border-left: 4px solid var(--primary-color);
+            padding: 20px;
+            border-radius: 0 10px 10px 0;
+            margin-top: 20px;
+        }
+
+        .info-card h4 {
+            margin: 0 0 8px 0;
+            color: var(--primary-color);
+            font-size: 15px;
+        }
+
+        .info-card p {
+            margin: 0;
+            font-size: 14.5px;
+            color: #444;
+            text-align: justify;
+        }
+
+        .highlight-box {
+            background: rgba(23, 185, 120, 0.08);
+            border: 1px dashed var(--secondary-color);
+            color: #0f764c;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 15px;
+            font-size: 14px;
+            font-weight: 500;
         }
     </style>
 </head>
@@ -142,129 +186,173 @@
 
 <div class="container">
     <header>
-        <h1>🧭 ĐỊNH HƯỚNG TỔ HỢP MÔN LỚP 10</h1>
-        <p>Lựa chọn định hướng tương lai nghề nghiệp để nhận gợi ý nhóm môn học tối ưu nhất cho chương trình mới.</p>
+        <h1>🧭 Công Cụ Định Hướng Tổ Hợp Môn Lớp 10</h1>
+        <p>Hệ thống phân tích dựa trên thế mạnh năng lực và mục tiêu xét tuyển Đại học để gợi ý nhóm môn tối ưu nhất.</p>
     </header>
 
-    <div class="step-box">
-        <label for="careerGroup">1. Chọn nhóm ngành nghề bạn hướng tới trong tương lai:</label>
-        <select id="careerGroup" onchange="updateFields()">
-            <option value="">-- Vui lòng chọn nhóm ngành --</option>
-            <option value="tech">Kỹ thuật, Công nghệ thông tin, Kiến trúc</option>
-            <option value="economy">Kinh tế, Quản trị kinh doanh, Tài chính</option>
-            <option value="medical">Y dược, Khối ngành Sức khỏe, Sinh học</option>
-            <option value="social">Sư phạm, Luật, Báo chí, Ngôn ngữ</option>
+    <!-- Bước 1: Chọn trường đại học / khối trường hướng tới -->
+    <div class="form-group">
+        <label for="universityGroup">1. Khối trường Đại học mục tiêu của học sinh:</label>
+        <select id="universityGroup" onchange="updateMajors()">
+            <option value="">-- Chọn khối trường mục tiêu --</option>
+            <option value="kinh_te">Khối Kinh tế - Quản trị - Tài chính (FTU, NEU, BA...)</option>
+            <option value="ky_thuat">Khối Kỹ thuật - Công nghệ - Kiến trúc (HUST, UET...)</option>
+            <option value="y_duoc">Khối Y dược - Khối ngành Sức khỏe - Hóa Sinh</option>
+            <option value="xa_hoi">Khối KH Xã hội - Sư phạm - Luật - Ngôn ngữ - Báo chí</option>
         </select>
     </div>
 
-    <div class="step-box">
-        <label for="major">2. Chọn ngành học cụ thể:</label>
-        <select id="major" disabled>
-            <option value="">-- Vui lòng chọn nhóm ngành trước --</option>
+    <!-- Bước 2: Chọn ngành học cụ thể -->
+    <div class="form-group">
+        <label for="majorSelect">2. Ngành học mong muốn hướng tới:</label>
+        <select id="majorSelect" disabled onchange="checkIeltsBenefit()">
+            <option value="">-- Vui lòng chọn khối trường trước --</option>
         </select>
     </div>
 
-    <button class="btn-submit" onclick="generateAdvice()">Xem Gợi Ý Tổ Hợp Phù Hợp</button>
+    <button class="btn-submit" onclick="generateAnalysis()">Phân Tích Lộ Trình & Tổ Hợp Môn</button>
 
+    <!-- KHU VỰC HIỂN THỊ KẾT QUẢ TƯ VẤN CHUYÊN SÂU -->
     <div id="resultBox" class="result-section">
-        <div class="result-title">🎯 GỢI Ý TỔ HỢP MÔN HỌC LỚP 10 DÀNH CHO BẠN:</div>
+        <div class="result-title">🎯 KẾT QUẢ PHÂN TÍCH TỔ HỢP MÔN TỐI ƯU</div>
         
-        <p><strong>Các môn học bắt buộc (Theo Bộ GD&ĐT):</strong></p>
-        <div id="compulsorySubjects">
-            </div>
+        <p style="font-weight: 600; font-size: 15px; margin-bottom: 8px;">1. Các môn học bắt buộc (Theo Bộ GD&ĐT):</p>
+        <div class="subject-container" id="compulsoryBox"></div>
 
-        <p style="margin-top: 20px;"><strong>Gợi ý 4 môn lựa chọn tối ưu nhất cho lớp 10:</strong></p>
-        <div id="recommendedSubjects">
-            </div>
+        <p style="font-weight: 600; font-size: 15px; margin-bottom: 8px;">2. Gợi ý 4 môn tự chọn lý tưởng nhất tại trường THPT:</p>
+        <div class="subject-container" id="recommendedBox"></div>
 
-        <div class="advice-box" id="expertAdvice">
-            </div>
+        <div class="info-card">
+            <h4>💡 Định hướng khối xét tuyển Đại học tương ứng:</h4>
+            <p id="examBlockInfo"></p>
+        </div>
+
+        <div class="info-card" style="border-left-color: var(--accent-color);">
+            <h4>🌱 Lời khuyên chân thành về năng lực học tập:</h4>
+            <p id="sincereAdvice"></p>
+        </div>
+
+        <div id="ieltsAlert" class="highlight-box" style="display: none;">
+            <strong>✨ Đặc quyền quy đổi điểm:</strong> Ngành này có xu hướng ưu tiên xét tuyển thẳng hoặc quy đổi điểm học bạ rất cao nếu học sinh sở hữu chứng chỉ IELTS từ sớm (5.5 - 6.5+). Nên có kế hoạch tích lũy song song từ lớp 10.
+        </div>
     </div>
 </div>
 
 <script>
-    // Cơ sở dữ liệu định hướng (Có thể mở rộng hoặc đưa lên Database Backend)
-    const database = {
-        tech: {
-            title: "Kỹ thuật & Công nghệ",
-            majors: ["Khoa học máy tính / IT", "Kỹ thuật Ô tô", "Kiến trúc & Thiết kế"],
-            subjects: ["Vật lí", "Hóa học", "Tin học", "Công nghệ (Công nghiệp)"],
-            advice: "Nhóm ngành này đòi hỏi tư duy logic cao. Tập trung mạnh vào Toán và Vật lí ở cấp 3 sẽ giúp bạn có lợi thế lớn khi xét tuyển các khối A00, A01."
-        },
-        economy: {
-            title: "Kinh tế & Quản lý",
-            majors: ["Quản trị kinh doanh", "Kế toán / Kiểm toán", "Logistics"],
+    // Cơ sở dữ liệu chuẩn hóa theo quy chế tuyển sinh GDPT mới
+    const admissionData = {
+        kinh_te: {
+            majors: [
+                { name: "Kinh tế đối ngoại, Thương mại quốc tế", ielts: true },
+                { name: "Quản trị kinh doanh, Marketing, Logistics", ielts: true },
+                { name: "Tài chính ngân hàng, Kế toán, Kiểm toán", ielts: false }
+            ],
             subjects: ["Vật lí", "Địa lí", "Giáo dục Kinh tế và Pháp luật", "Tin học"],
-            advice: "Các ngành kinh tế hiện nay xét tuyển rất mạnh khối D01 và A01. Việc chọn học Kinh tế & Pháp luật từ lớp 10 giúp bạn tiếp cận sớm với tư duy vĩ mô."
+            blocks: "Hướng tới các tổ hợp xét tuyển truyền thống: A00 (Toán, Lý, Hóa), A01 (Toán, Lý, Anh), hoặc D01 (Toán, Văn, Anh). Việc chọn môn Giáo dục Kinh tế và Pháp luật từ lớp 10 giúp học sinh làm quen rất tốt với tư duy quản lý tài chính và vĩ mô.",
+            advice: "Học sinh cần giữ phong độ học đều các môn tính toán logic. Nếu hướng tới các trường top đầu, việc kết hợp điểm học bạ cùng chứng chỉ quốc tế sẽ giảm áp lực thi cử cực kỳ lớn vào năm lớp 12."
         },
-        medical: {
-            title: "Y dược & Sức khỏe",
-            majors: ["Y khoa / Dược học", "Công nghệ sinh học", "Nông nghiệp công nghệ cao"],
+        ky_thuat: {
+            majors: [
+                { name: "Khoa học máy tính, Công nghệ thông tin", ielts: true },
+                { name: "Kỹ thuật Ô tô, Cơ điện tử, Điện tử viễn thông", ielts: false },
+                { name: "Kiến trúc, Quy hoạch đô thị, Thiết kế", ielts: false }
+            ],
+            subjects: ["Vật lí", "Hóa học", "Tin học", "Công nghệ (Công nghiệp)"],
+            blocks: "Tập trung tối đa cho khối A00 (Toán, Lý, Hóa), A01 (Toán, Lý, Anh) hoặc các bài thi đánh giá tư duy, đánh giá năng lực của các trường đại học lớn.",
+            advice: "Nhóm ngành kỹ thuật công nghệ đòi hỏi tư duy hệ thống mạnh. Cặp đôi môn học Vật lí + Tin học gần như là bắt buộc để tạo nền móng vững chắc, giúp học sinh không bị ngợp khi bước vào giảng đường."
+        },
+        y_duoc: {
+            majors: [
+                { name: "Y khoa, Răng - Hàm - Mặt, Dược học", ielts: true },
+                { name: "Điều dưỡng, Kỹ thuật xét nghiệm y học", ielts: false },
+                { name: "Công nghệ sinh học, Công nghệ thực phẩm", ielts: false }
+            ],
             subjects: ["Hóa học", "Sinh học", "Địa lí", "Công nghệ (Nông nghiệp)"],
-            advice: "Khối B00 (Toán, Hóa, Sinh) là chìa khóa vàng cho nhóm ngành này. Hãy đảm bảo bạn chọn cặp đôi Hóa - Sinh trong tổ hợp tự chọn của trường cấp 3."
+            blocks: "Tập trung cốt lõi cho khối B00 (Toán, Hóa, Sinh). Một số trường hiện nay đã mở rộng xét tuyển khối kết hợp có môn Ngoại ngữ.",
+            advice: "Đây là nhóm ngành có điểm chuẩn thuộc top cao nhất. Việc học song song và đào sâu hai bộ môn Hóa học và Sinh học ngay từ năm lớp 10 là điều kiện tiên quyết để cạnh tranh tấm vé vào các trường Y Dược danh tiếng."
         },
-        social: {
-            title: "Khoa học Xã hội & Nhân văn",
-            majors: ["Luật thương mại", "Báo chí & Truyền thông", "Ngôn ngữ Anh/Trung"],
+        xa_hoi: {
+            majors: [
+                { name: "Báo chí, Truyền thông đa phương tiện, Quan hệ công chúng", ielts: true },
+                { name: "Luật kinh tế, Luật học hành chính", ielts: false },
+                { name: "Sư phạm (Toán, Văn, Anh, Sử, Địa)", ielts: false },
+                { name: "Ngôn ngữ học (Anh, Trung, Hàn, Nhật)", ielts: true }
+            ],
             subjects: ["Lịch sử", "Địa lí", "Giáo dục Kinh tế và Pháp luật", "Tin học"],
-            advice: "Thế mạnh về ngôn ngữ và tư duy lập luận là cốt lõi. Hãy ưu tiên các môn thuộc nhóm xã hội như Lịch sử và Địa lí để tối ưu điểm số xét tuyển học bạ hoặc thi tốt nghiệp."
+            blocks: "Tập trung chủ lực vào các khối C00 (Văn, Sử, Địa), D01 (Toán, Văn, Anh) hoặc D14, D15 tùy theo từng chuyên ngành cụ thể.",
+            advice: "Đối với khối ngành đòi hỏi sự nhạy bén ngôn ngữ và lập luận xã hội, việc học sâu môn Lịch sử và Địa lí giúp học sinh tối ưu hóa điểm số thi tốt nghiệp THPT. Văn phong cần được rèn luyện để có sự chân thành, mạch lạc tự nhiên."
         }
     };
 
     const compulsoryList = ["Ngữ văn", "Toán", "Ngoại ngữ 1", "Giáo dục thể chất", "Giáo dục quốc phòng và an ninh", "Hoạt động trải nghiệm, hướng nghiệp", "Nội dung giáo dục của địa phương"];
 
-    function updateFields() {
-        const groupSelect = document.getElementById("careerGroup").value;
-        const majorSelect = document.getElementById("major");
+    function updateMajors() {
+        const groupKey = document.getElementById("universityGroup").value;
+        const majorSelect = document.getElementById("majorSelect");
         
         majorSelect.innerHTML = "";
         
-        if (!groupSelect) {
-            majorSelect.innerHTML = '<option value="">-- Vui lòng chọn nhóm ngành trước --</option>';
+        if (!groupKey) {
+            majorSelect.innerHTML = '<option value="">-- Vui lòng chọn khối trường trước --</option>';
             majorSelect.disabled = true;
             return;
         }
 
         majorSelect.disabled = false;
-        const data = database[groupSelect];
+        const data = admissionData[groupKey];
         
-        data.majors.forEach(major => {
+        data.majors.forEach((major, index) => {
             let option = document.createElement("option");
-            option.value = major;
-            option.textContent = major;
+            option.value = index;
+            option.textContent = major.name;
             majorSelect.appendChild(option);
         });
+        
+        checkIeltsBenefit();
     }
 
-    function generateAdvice() {
-        const groupSelect = document.getElementById("careerGroup").value;
-        if (!groupSelect) {
-            alert("Vui lòng chọn nhóm ngành nghề trước khi xem kết quả!");
+    function checkIeltsBenefit() {
+        const groupKey = document.getElementById("universityGroup").value;
+        const majorIndex = document.getElementById("majorSelect").value;
+        const ieltsAlert = document.getElementById("ieltsAlert");
+        
+        if(groupKey && majorIndex !== "") {
+            const isBenefit = admissionData[groupKey].majors[majorIndex].ielts;
+            ieltsAlert.style.display = isBenefit ? "block" : "none";
+        } else {
+            ieltsAlert.style.display = "none";
+        }
+    }
+
+    function generateAnalysis() {
+        const groupKey = document.getElementById("universityGroup").value;
+        if (!groupKey) {
+            alert("Vui lòng lựa chọn đầy đủ thông tin mục tiêu để hệ thống phân tích!");
             return;
         }
 
-        const data = database[groupSelect];
-        const resultBox = document.getElementById("resultBox");
+        const data = admissionData[groupKey];
         
-        // Hiển thị các môn bắt buộc
-        const compDiv = document.getElementById("compulsorySubjects");
-        compDiv.innerHTML = "";
+        // Hiển thị môn bắt buộc
+        const compBox = document.getElementById("compulsoryBox");
+        compBox.innerHTML = "";
         compulsoryList.forEach(sub => {
-            compDiv.innerHTML += `<span class="subject-tag compulsory">${sub}</span>`;
+            compBox.innerHTML += `<span class="subject-tag compulsory">${sub}</span>`;
         });
 
-        // Hiển thị môn gợi ý lựa chọn
-        const recDiv = document.getElementById("recommendedSubjects");
-        recDiv.innerHTML = "";
+        // Hiển thị môn tự chọn gợi ý
+        const recBox = document.getElementById("recommendedBox");
+        recBox.innerHTML = "";
         data.subjects.forEach(sub => {
-            recDiv.innerHTML += `<span class="subject-tag">${sub}</span>`;
+            recBox.innerHTML += `<span class="subject-tag recommended">${sub}</span>`;
         });
 
-        // Hiển thị lời khuyên định hướng
-        const adviceDiv = document.getElementById("expertAdvice");
-        adviceDiv.innerHTML = `<strong>💡 Lời khuyên định hướng:</strong> ${data.advice}`;
+        // Đổ dữ liệu text định hướng
+        document.getElementById("examBlockInfo").textContent = data.blocks;
+        document.getElementById("sincereAdvice").textContent = data.advice;
 
-        // Hiển thị vùng kết quả với hiệu ứng mượt mà
+        // Hiện vùng kết quả
+        const resultBox = document.getElementById("resultBox");
         resultBox.style.display = "block";
         resultBox.scrollIntoView({ behavior: 'smooth' });
     }
