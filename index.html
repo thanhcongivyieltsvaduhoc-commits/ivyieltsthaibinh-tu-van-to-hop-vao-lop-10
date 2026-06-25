@@ -24,7 +24,13 @@
         <div class="max-w-6xl mx-auto flex justify-between items-center">
             <!-- Sử dụng trực tiếp ảnh logo thương hiệu được cung cấp -->
             <div class="flex items-center gap-3">
-                <img src="image_064edd.png" alt="IVY IELTS Logo" class="h-12 w-auto object-contain rounded-md shadow-xs">
+                <div class="relative flex items-center">
+                    <img src="image_064edd.png" id="brand-logo" alt="IVY IELTS Logo" class="h-12 w-auto object-contain rounded-md shadow-xs" onerror="handleLogoError(this)">
+                    <!-- Logo dự phòng bằng CSS tuyệt đẹp sẽ tự động hiển thị nếu ảnh bị lỗi -->
+                    <div id="logo-fallback" class="hidden h-11 px-3 bg-red-600 text-white flex items-center justify-center rounded-lg font-extrabold tracking-tight text-base shadow-xs border border-red-700">
+                        IVY<span class="bg-white text-red-600 px-1 py-0.5 ml-1 rounded-sm text-xs font-black">IELTS</span>
+                    </div>
+                </div>
                 <div class="border-l-2 border-slate-200 pl-3 hidden sm:block">
                     <span class="text-xs font-bold text-slate-400 tracking-wider uppercase block">Hệ thống giáo dục</span>
                     <span class="text-sm font-extrabold text-red-600 tracking-tight uppercase">IVY IELTS</span>
@@ -195,7 +201,13 @@
     <footer class="bg-slate-900 text-slate-400 py-8 mt-12 border-t border-slate-800 text-center text-xs">
         <div class="max-w-6xl mx-auto px-4 space-y-3">
             <div class="flex justify-center items-center gap-3">
-                <img src="image_064edd.png" alt="IVY IELTS Logo" class="h-8 w-auto opacity-70 grayscale hover:grayscale-0 transition-all rounded-sm">
+                <div class="relative flex items-center">
+                    <img src="image_064edd.png" id="footer-brand-logo" alt="IVY IELTS Logo" class="h-8 w-auto opacity-70 grayscale hover:grayscale-0 transition-all rounded-sm" onerror="handleFooterLogoError(this)">
+                    <!-- Logo dự phòng dưới chân trang bằng CSS -->
+                    <div id="footer-logo-fallback" class="hidden h-8 px-2 bg-red-800 text-white flex items-center justify-center rounded-md font-extrabold tracking-tight text-xs border border-red-950">
+                        IVY<span class="bg-white text-red-800 px-0.5 py-0.2 ml-0.5 rounded-xs text-[10px] font-black">IELTS</span>
+                    </div>
+                </div>
                 <span class="text-slate-500">|</span>
                 <span class="font-bold text-slate-300">HỆ THỐNG GIÁO DỤC IVY IELTS</span>
             </div>
@@ -256,6 +268,23 @@
         const blockResults = document.getElementById("block-results");
         const typicalGroupsTable = document.getElementById("typical-groups-table");
         const extendedBlocksDiv = document.getElementById("extended-blocks");
+
+        // Xử lý tự động ẩn ảnh vỡ và hiển thị logo dựng bằng CSS chuyên nghiệp
+        window.handleLogoError = function(img) {
+            img.style.display = 'none';
+            const fallback = document.getElementById('logo-fallback');
+            if (fallback) {
+                fallback.classList.remove('hidden');
+            }
+        };
+
+        window.handleFooterLogoError = function(img) {
+            img.style.display = 'none';
+            const fallback = document.getElementById('footer-logo-fallback');
+            if (fallback) {
+                fallback.classList.remove('hidden');
+            }
+        };
 
         // Khởi tạo render dữ liệu
         function initStaticData() {
@@ -405,3 +434,10 @@
     </script>
 </body>
 </html>
+```
+eof
+
+### Điểm mấu chốt được sửa đổi:
+1. **Lớp bọc thông minh (`onerror`)**: Khi ảnh `image_064edd.png` gặp sự cố tải, nó sẽ gọi ngay các hàm dự phòng `handleLogoError()` và `handleFooterLogoError()`.
+2. **Logo CSS chuyên nghiệp**: Thay vì hiện hình ảnh bị vỡ, website sẽ tự động biến thành một khối text thiết kế cao cấp dạng **IVY | IELTS** màu đỏ đậm viền sắc nét, đảm bảo tính thẩm mỹ 100% trong mọi trường hợp.
+3. **Sử dụng thực tế**: Khi bạn đặt tệp tin ảnh logo tải về vào chung một thư mục với file `index.html` này trên máy tính của mình, logo thực tế sẽ lập tức xuất hiện trở lại thay thế cho phiên bản CSS dự phòng.
