@@ -20,7 +20,7 @@
 <body class="bg-slate-50 text-slate-800">
 
     <!-- Thanh Navigation chứa Logo Thương Hiệu -->
-    <nav class="bg-white border-b border-slate-100 py-3 px-6 sticky top-0 z-50 shadow-sm">
+    <nav class="bg-white border-b border-slate-100 py-3 px-6 sticky top-0 z-40 shadow-sm">
         <div class="max-w-6xl mx-auto flex justify-between items-center">
             <!-- Sử dụng trực tiếp ảnh logo thương hiệu được cung cấp -->
             <div class="flex items-center gap-3">
@@ -44,7 +44,7 @@
         </div>
     </nav>
 
-    <!-- Header / Banner - Đổi sang tone đỏ thương hiệu từ Logo -->
+    <!-- Header / Banner - Tone đỏ thương hiệu đặc trưng -->
     <header class="bg-gradient-to-br from-red-600 via-red-700 to-red-950 text-white py-12 px-4 shadow-md text-center relative overflow-hidden">
         <!-- Họa tiết nền trừu tượng tạo sự sang trọng -->
         <div class="absolute inset-0 opacity-10 bg-[radial-gradient(#fff_1px,transparent_1px)] [background-size:16px_16px]"></div>
@@ -57,7 +57,7 @@
                 CÔNG CỤ TỰ CHỌN & TƯ VẤN TỔ HỢP MÔN LỚP 10
             </h1>
             <p class="mt-3 text-red-100 max-w-2xl mx-auto text-sm md:text-base font-light">
-                Ứng dụng thông minh phát triển bởi <span class="font-bold text-white">IVY IELTS</span>. Giúp học sinh lớp 9 (2K11) chủ động lựa chọn 4 môn tự chọn lớp 10, thiết lập lộ trình xét tuyển Đại học và chinh phục IELTS sớm.
+                Ứng dụng thông minh phát triển bởi <span class="font-bold text-white">IVY IELTS</span>. Giúp học sinh lớp 9 (2K11) chủ động lựa chọn 4 môn tự chọn lớp 10, thiết lập lộ trình xét tuyển Đại học tối ưu nhất.
             </p>
         </div>
     </header>
@@ -107,17 +107,54 @@
                 </div>
             </div>
 
-            <!-- KẾT QUẢ ĐỊNH HƯỚNG TỔ HỢP (Chuyển sang tone Đỏ cực đẹp) -->
-            <div id="result-box" class="bg-red-50 border border-red-100 rounded-xl p-6 hidden transition-all duration-300">
-                <h3 class="text-lg font-bold text-red-950 mb-2 flex items-center gap-2">
-                    🏆 Kết quả phân tích hướng đi dành riêng cho bạn
+            <!-- KẾT QUẢ ĐỊNH HƯỚNG TỔ HỢP CHI TIẾT (Theo mẫu Hocmai) -->
+            <div id="result-box" class="bg-white rounded-xl p-6 shadow-sm border border-slate-100 hidden transition-all duration-300">
+                
+                <h3 class="text-lg font-bold text-slate-900 mb-5 flex items-center gap-2">
+                    <span class="inline-flex items-center justify-center bg-emerald-100 text-emerald-600 rounded-full p-1 h-6 w-6">
+                        <i class="fa-solid id-check fa-check text-xs"></i>
+                    </span>
+                    Gợi Ý Khối Thi & Ngành Học Phù Hợp Tối Ưu Cho Bạn:
                 </h3>
-                <p class="text-sm text-red-800 mb-4">
-                    Với các môn tự chọn bạn vừa lựa chọn, bạn sẽ tối ưu hóa điểm số và có ưu thế xét tuyển Đại học ở những khối thi sau:
-                </p>
-                <div id="block-results" class="space-y-3">
-                    <!-- Kết quả phân tích khối thi truyền từ JS -->
+
+                <!-- Bảng 2 cột: Khối thi đích thực vs Nhóm ngành định hướng -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                    
+                    <!-- Khối thi đích thực (Cột trái xanh dương) -->
+                    <div class="bg-blue-50/55 border border-blue-100 rounded-xl p-5">
+                        <h4 class="text-slate-900 font-bold text-sm md:text-base flex items-center gap-2 mb-3">
+                            🚀 Khối Thi Đích Thực:
+                        </h4>
+                        <div id="result-blocks-title" class="text-slate-800 font-bold text-base md:text-lg tracking-tight mb-2 leading-snug">
+                            <!-- Render tự động -->
+                        </div>
+                        <p class="text-xs text-slate-500 leading-relaxed">
+                            Dựa trên 4 môn học tự chọn phối hợp cùng môn Toán học và Ngữ văn bắt buộc.
+                        </p>
+                    </div>
+
+                    <!-- Nhóm ngành định hướng (Cột phải xanh ngọc) -->
+                    <div class="bg-emerald-50/50 border border-emerald-100 rounded-xl p-5">
+                        <h4 class="text-slate-900 font-bold text-sm md:text-base flex items-center gap-2 mb-3">
+                            🎯 Nhóm Ngành Định Hướng:
+                        </h4>
+                        <ul id="result-majors-list" class="space-y-2 text-xs md:text-sm text-slate-700">
+                            <!-- Render tự động -->
+                        </ul>
+                    </div>
+
                 </div>
+
+                <!-- Trường đại học top đầu (Cột dưới rộng) -->
+                <div class="bg-slate-50 border border-slate-100 rounded-xl p-5">
+                    <h4 class="text-slate-950 font-bold text-xs tracking-wider uppercase flex items-center gap-2 mb-2">
+                        📌 Trường Đại Học Top Đầu Xét Tuyển Tổ Hợp Của Bạn:
+                    </h4>
+                    <p id="result-universities" class="text-slate-700 text-sm font-semibold">
+                        <!-- Render tự động -->
+                    </p>
+                </div>
+
             </div>
 
             <!-- GỢI Ý NHÓM TỔ HỢP ĐIỂN HÌNH TẠI CÁC TRƯỜNG THPT -->
@@ -216,6 +253,24 @@
         </div>
     </footer>
 
+    <!-- MODAL POPUP THÔNG BÁO CAO CẤP (Thay thế hoàn toàn cho Alert xấu xí) -->
+    <div id="custom-modal" class="fixed inset-0 bg-slate-950/40 backdrop-blur-sm flex items-center justify-center z-50 hidden transition-all duration-300 opacity-0">
+        <div class="bg-white rounded-2xl p-6 max-w-sm w-full mx-4 shadow-xl border border-slate-100 transform scale-90 transition-all duration-300" id="modal-container">
+            <div class="text-center">
+                <span class="inline-flex items-center justify-center h-12 w-12 rounded-full bg-red-100 text-red-600 text-2xl mb-3">
+                    <i class="fa-solid fa-triangle-exclamation"></i>
+                </span>
+                <h3 class="text-base font-extrabold text-slate-950">Thông báo quy chế</h3>
+                <p class="text-xs text-slate-600 mt-2 leading-relaxed" id="modal-message">
+                    Theo quy định của Bộ GD&ĐT, học sinh chỉ được chọn tối đa đúng 4 môn tự chọn lớp 10!
+                </p>
+                <button onclick="closeModal()" class="mt-5 w-full bg-red-600 hover:bg-red-700 text-white text-xs font-bold py-2.5 px-4 rounded-xl transition-all cursor-pointer shadow-md shadow-red-100">
+                    Tôi đã hiểu
+                </button>
+            </div>
+        </div>
+    </div>
+
     <!-- JAVASCRIPT XỬ LÝ LOGIC TƯƠNG TÁC (Đồng bộ hóa tone Đỏ) -->
     <script>
         // 1. Dữ liệu các môn tự chọn
@@ -258,6 +313,50 @@
             { name: "Nhóm 8 (Công nghệ & Mỹ thuật)", subs: "Vật lí - Tin học - Công nghệ - Mĩ thuật" }
         ];
 
+        // 4. Cơ sở dữ liệu chuyên biệt để render giao diện gợi ý chi tiết giống HOCMAI
+        const recommendationProfiles = {
+            tech: {
+                blocks: "A00 (Toán - Lý - Hóa) | A01 (Toán - Lý - Anh) | D01 (Toán - Văn - Anh)",
+                majors: [
+                    "Công nghệ kỹ thuật cơ điện tử, robot & tự động hóa",
+                    "Công nghệ thông tin, Khoa học dữ liệu & Trí tuệ nhân tạo (AI)",
+                    "Kỹ thuật Điện tử - Viễn thông, Công nghệ vi mạch bán dẫn",
+                    "Kỹ thuật xây dựng, Kiến trúc hạ tầng, An toàn thông tin"
+                ],
+                universities: "Đại học Bách khoa Hà Nội, Đại học Công nghệ - ĐHQGHN, Đại học Sư phạm Kỹ thuật, Học viện Công nghệ Bưu chính Viễn thông (PTIT)."
+            },
+            bio: {
+                blocks: "B00 (Toán - Hóa - Sinh) | D08 (Toán - Sinh - Anh) | A02 (Toán - Vật lí - Sinh)",
+                majors: [
+                    "Y đa khoa, Răng - Hàm - Mặt, Dược học",
+                    "Kỹ thuật xét nghiệm y học, Điều dưỡng, Dinh dưỡng lâm sàng",
+                    "Công nghệ sinh học, Công nghệ thực phẩm ứng dụng",
+                    "Khoa học môi trường, Thú y, Sinh học nông nghiệp công nghệ cao"
+                ],
+                universities: "Đại học Y Hà Nội, Đại học Dược Hà Nội, Học viện Quân y, Trường Đại học Khoa học Tự nhiên - ĐHQGHN."
+            },
+            social: {
+                blocks: "C00 (Văn - Sử - Địa) | D66 (Văn - GDKT&PL - Anh) | A10 (Toán - Lý - GDKT&PL)",
+                majors: [
+                    "Pháp luật tố tụng dân sự, Luật kinh tế & Quản lý hành chính nhà nước",
+                    "Kinh tế đối ngoại, Quản trị kinh doanh, Marketing số",
+                    "Báo chí truyền thông, Quan hệ công chúng (PR), Quản lý văn hóa",
+                    "Du lịch lữ hành, địa lý học kinh tế khu vực, Đông phương học"
+                ],
+                universities: "Trường Đại học Ngoại thương, Đại học Kinh tế Quốc dân, Đại học Luật Hà Nội, Trường Đại học Khoa học Xã hội và Nhân văn - ĐHQGHN."
+            },
+            art: {
+                blocks: "H00 (Văn - Mỹ thuật 1 - Mỹ thuật 2) | N00 (Văn - Âm nhạc 1 - Âm nhạc 2) | V01 (Toán - Văn - Vẽ)",
+                majors: [
+                    "Thiết kế đồ họa, Thiết kế thời trang, Thiết kế nội thất",
+                    "Kiến trúc cảnh quan, Thiết kế Mỹ thuật Game/Phim hoạt hình",
+                    "Sư phạm Âm nhạc, Sư phạm Mỹ thuật học đường",
+                    "Sáng tác âm nhạc, Tổ chức sự kiện âm nhạc & Nghệ thuật biểu diễn"
+                ],
+                universities: "Đại học Mỹ thuật Công nghiệp, Đại học Kiến trúc, Học viện Âm nhạc Quốc gia Việt Nam, Đại học Sân khấu Điện ảnh."
+            }
+        };
+
         let selectedSubjects = [];
 
         // DOM Elements
@@ -265,9 +364,32 @@
         const countSelected = document.getElementById("count-selected");
         const btnReset = document.getElementById("btn-reset");
         const resultBox = document.getElementById("result-box");
-        const blockResults = document.getElementById("block-results");
         const typicalGroupsTable = document.getElementById("typical-groups-table");
         const extendedBlocksDiv = document.getElementById("extended-blocks");
+
+        // UI Modals
+        const customModal = document.getElementById("custom-modal");
+        const modalContainer = document.getElementById("modal-container");
+
+        // Hàm mở Modal cảnh báo
+        window.openModal = function() {
+            customModal.classList.remove("hidden");
+            setTimeout(() => {
+                customModal.classList.remove("opacity-0");
+                modalContainer.classList.remove("scale-90");
+                modalContainer.classList.add("scale-100");
+            }, 50);
+        };
+
+        // Hàm đóng Modal cảnh báo
+        window.closeModal = function() {
+            customModal.classList.add("opacity-0");
+            modalContainer.classList.remove("scale-100");
+            modalContainer.classList.add("scale-90");
+            setTimeout(() => {
+                customModal.classList.add("hidden");
+            }, 300);
+        };
 
         // Xử lý tự động ẩn ảnh vỡ và hiển thị logo dựng bằng CSS chuyên nghiệp
         window.handleLogoError = function(img) {
@@ -324,7 +446,7 @@
             } else {
                 // Nếu chưa chọn, giới hạn tối đa 4 môn tự chọn
                 if (selectedSubjects.length >= 4) {
-                    alert("Theo quy định của Bộ GD&ĐT, học sinh chỉ được chọn tối đa 4 môn tự chọn lớp 10!");
+                    openModal();
                     return;
                 }
                 selectedSubjects.push(id);
@@ -357,7 +479,7 @@
             });
         }
 
-        // Phân tích đưa ra định hướng xét tuyển Đại học
+        // Phân tích đưa ra định hướng xét tuyển Đại học chi tiết (Thiết kế Hocmai)
         function analyzeSelection() {
             if (selectedSubjects.length < 4) {
                 resultBox.classList.add("hidden");
@@ -365,61 +487,49 @@
             }
 
             resultBox.classList.remove("hidden");
-            blockResults.innerHTML = "";
 
-            let matchedBlocks = [];
-
-            // Kiểm tra khối A truyền thống (Cần Lý và Hóa)
-            if (selectedSubjects.includes("ly") && selectedSubjects.includes("hoa")) {
-                matchedBlocks.push({ 
-                    code: "Tổ hợp thi khối A00 (Toán, Vật lí, Hóa học)", 
-                    desc: "Đây là thế mạnh tuyệt đối để bạn theo đuổi các ngành kỹ thuật mũi nhọn như Khoa học máy tính, AI, Công nghệ bán dẫn, hoặc Khối ngành tài chính, kinh tế tại Đại học Ngoại Thương, Kinh tế Quốc dân." 
-                });
-            }
-            // Kiểm tra khối B truyền thống (Cần Hóa và Sinh)
-            if (selectedSubjects.includes("hoa") && selectedSubjects.includes("sinh")) {
-                matchedBlocks.push({ 
-                    code: "Tổ hợp thi khối B00 (Toán, Hóa học, Sinh học)", 
-                    desc: "Lựa chọn hàng đầu cho các bạn định hướng theo khối ngành chăm sóc sức khỏe (Y khoa, Răng hàm mặt, Dược) và Nghiên cứu Công nghệ Sinh học." 
-                });
-            }
-            // Kiểm tra khối C truyền thống (Cần Địa lí)
-            if (selectedSubjects.includes("dia")) {
-                matchedBlocks.push({ 
-                    code: "Tổ hợp thi khối C00 (Ngữ văn, Lịch sử, Địa lí)", 
-                    desc: "Cực kỳ thích hợp cho nhóm ngành Sư phạm, Báo chí, Luật, Quan hệ công chúng hoặc lực lượng vũ trang Công an - Quân đội." 
-                });
-            }
-
-            // Kiểm tra các khối thi mở rộng
-            extendedBlocksData.forEach(block => {
-                if(block.trigger.length > 0 && block.trigger.every(val => selectedSubjects.includes(val))) {
-                    matchedBlocks.push({ 
-                        code: `Tổ hợp thi khối ${block.code} (${block.sub})`, 
-                        desc: "Phương thức xét tuyển mở rộng giúp tăng gấp đôi cơ hội đỗ đại học." 
-                    });
-                }
+            // Chạy thuật toán chấm điểm sở thích/thế mạnh dựa trên 4 môn đã chọn
+            const scores = { tech: 0, bio: 0, social: 0, art: 0 };
+            
+            selectedSubjects.forEach(sub => {
+                if (sub === 'ly') { scores.tech += 4; scores.social += 1; }
+                if (sub === 'hoa') { scores.tech += 3; scores.bio += 3; }
+                if (sub === 'sinh') { scores.bio += 5; }
+                if (sub === 'dia') { scores.social += 4; }
+                if (sub === 'ktpl') { scores.social += 5; }
+                if (sub === 'tin') { scores.tech += 4; scores.art += 1; }
+                if (sub === 'cn') { scores.tech += 3; }
+                if (sub === 'an') { scores.art += 5; }
+                if (sub === 'mt') { scores.art += 5; }
             });
 
-            // Nếu không trùng khối đặc thù nào
-            if (matchedBlocks.length === 0) {
-                blockResults.innerHTML = `
-                    <div class="p-4 bg-white rounded-lg border border-red-100 text-sm text-slate-700 shadow-sm">
-                        ✨ Tổ hợp 4 môn bạn chọn mang tính chuyên môn biệt lập cao (Nghệ thuật / Kỹ thuật Công nghệ). Với xu hướng tuyển sinh hiện đại, bạn hoàn toàn có thể dùng phương thức <strong>Xét tuyển học bạ tích hợp chứng chỉ ngoại ngữ IELTS</strong> hoặc tham gia các kỳ thi Đánh giá năng lực của các trường đại học lớn!
-                    </div>
-                `;
-                return;
+            // Tìm hồ sơ chiến thắng (có điểm cao nhất)
+            let dominantProfile = 'tech';
+            let maxScore = -1;
+            for (const key in scores) {
+                if (scores[key] > maxScore) {
+                    maxScore = scores[key];
+                    dominantProfile = key;
+                }
             }
 
-            // Render danh sách các khối xét tuyển tối ưu
-            blockResults.innerHTML = matchedBlocks.map(item => `
-                <div class="p-3.5 bg-white rounded-lg border border-red-100 shadow-sm">
-                    <strong class="text-red-900 text-sm flex items-center gap-1.5">
-                        <span class="text-emerald-500 font-bold">✔</span> ${item.code}
-                    </strong>
-                    <p class="text-xs text-slate-600 mt-1 leading-relaxed">${item.desc}</p>
-                </div>
+            // Lấy dữ liệu hồ sơ tương ứng
+            const profile = recommendationProfiles[dominantProfile];
+
+            // Render dữ liệu lên hộp kết quả mô phỏng theo ảnh mẫu Hocmai
+            document.getElementById("result-blocks-title").innerText = profile.blocks;
+            
+            // Render danh sách ngành định hướng (Gạch đầu dòng tròn xanh lá cây)
+            const listContainer = document.getElementById("result-majors-list");
+            listContainer.innerHTML = profile.majors.map(m => `
+                <li class="flex items-start gap-2">
+                    <span class="text-emerald-500 font-bold mt-0.5">•</span>
+                    <span>${m}</span>
+                </li>
             `).join('');
+
+            // Render danh sách trường đại học đề xuất
+            document.getElementById("result-universities").innerText = profile.universities;
         }
 
         // Nút xóa tất cả lựa chọn
@@ -434,7 +544,3 @@
     </script>
 </body>
 </html>
-```
-eof
-
-Tôi đã lọc bỏ câu đề xuất IELTS ở phần phân tích khối thi mở rộng để giao diện gọn gàng và tinh gọn hơn đúng như yêu cầu của bạn. Bạn có thể kiểm tra trực tiếp trên trình duyệt nhé!
