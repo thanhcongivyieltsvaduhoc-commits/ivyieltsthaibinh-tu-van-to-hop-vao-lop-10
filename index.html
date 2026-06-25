@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>IVY IELTS - Công Cụ Tư Vấn Chọn Tổ Hợp Môn Lớp 10 (2K11)</title>
     <!-- Sử dụng Tailwind CSS từ CDN để tùy biến giao diện chuyên nghiệp -->
-    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
     <!-- Google Fonts: Be Vietnam Pro cực kỳ phù hợp cho tiếng Việt và thương hiệu giáo dục hiện đại -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -20,14 +20,14 @@
 <body class="bg-slate-50 text-slate-800">
 
     <!-- Thanh Navigation chứa Logo Thương Hiệu -->
-    <nav class="bg-white border-b border-slate-100 py-3 px-6 sticky top-0 z-50 shadow-xs">
+    <nav class="bg-white border-b border-slate-100 py-3 px-6 sticky top-0 z-50 shadow-sm">
         <div class="max-w-6xl mx-auto flex justify-between items-center">
             <!-- Sử dụng trực tiếp ảnh logo thương hiệu được cung cấp -->
             <div class="flex items-center gap-3">
                 <div class="relative flex items-center">
-                    <img src="image_064edd.png" id="brand-logo" alt="IVY IELTS Logo" class="h-12 w-auto object-contain rounded-md shadow-xs" onerror="handleLogoError(this)">
+                    <img src="image_064edd.png" id="brand-logo" alt="IVY IELTS Logo" class="h-12 w-auto object-contain rounded-md shadow-sm" onerror="handleLogoError(this)">
                     <!-- Logo dự phòng bằng CSS tuyệt đẹp sẽ tự động hiển thị nếu ảnh bị lỗi -->
-                    <div id="logo-fallback" class="hidden h-11 px-3 bg-red-600 text-white flex items-center justify-center rounded-lg font-extrabold tracking-tight text-base shadow-xs border border-red-700">
+                    <div id="logo-fallback" class="hidden h-11 px-3 bg-red-600 text-white flex items-center justify-center rounded-lg font-extrabold tracking-tight text-base shadow-sm border border-red-700">
                         IVY<span class="bg-white text-red-600 px-1 py-0.5 ml-1 rounded-sm text-xs font-black">IELTS</span>
                     </div>
                 </div>
@@ -68,7 +68,7 @@
         <div class="lg:col-span-2 space-y-6">
             
             <!-- Thông tin quy chế cốt lõi -->
-            <div class="bg-white rounded-xl p-6 shadow-xs border border-slate-100">
+            <div class="bg-white rounded-xl p-6 shadow-sm border border-slate-100">
                 <h2 class="text-lg font-bold text-slate-900 mb-3 flex items-center gap-2">
                     <span class="text-red-600">📌</span> Cấu trúc môn học lớp 10 năm học mới
                 </h2>
@@ -85,7 +85,7 @@
             </div>
 
             <!-- ỨNG DỤNG TƯƠNG TÁC CHỌN MÔN (Đã chuyển sang tone Đỏ) -->
-            <div class="bg-white rounded-xl p-6 shadow-xs border border-slate-100">
+            <div class="bg-white rounded-xl p-6 shadow-sm border border-slate-100">
                 <div class="flex justify-between items-center mb-4 flex-wrap gap-2">
                     <h2 class="text-lg font-bold text-slate-900">
                         👉 Bước 1: Click chọn 4 môn bạn có thế mạnh hoặc yêu thích nhất
@@ -121,7 +121,7 @@
             </div>
 
             <!-- GỢI Ý NHÓM TỔ HỢP ĐIỂN HÌNH TẠI CÁC TRƯỜNG THPT -->
-            <div class="bg-white rounded-xl p-6 shadow-xs border border-slate-100">
+            <div class="bg-white rounded-xl p-6 shadow-sm border border-slate-100">
                 <h2 class="text-lg font-bold text-slate-900 mb-4">📍 8 Nhóm tổ hợp điển hình xây dựng tại các trường THPT</h2>
                 <div class="overflow-x-auto">
                     <table class="w-full text-sm text-left border-collapse">
@@ -167,7 +167,7 @@
             </div>
 
             <!-- Các khối thi mở rộng -->
-            <div class="bg-white rounded-xl p-6 shadow-xs border border-slate-100">
+            <div class="bg-white rounded-xl p-6 shadow-sm border border-slate-100">
                 <h3 class="text-base font-bold text-slate-900 mb-3">📋 Các khối xét tuyển bổ sung phổ biến</h3>
                 <p class="text-xs text-slate-500 mb-3">Nhiều trường Đại học hiện nay dùng các tổ hợp mới dưới đây để đa dạng hóa phương thức xét tuyển:</p>
                 <div class="space-y-2 max-h-60 overflow-y-auto pr-1 text-sm text-slate-600" id="extended-blocks">
@@ -191,7 +191,7 @@
                 </ul>
                 <div class="mt-4 pt-3 border-t border-red-100/60 flex justify-between items-center">
                     <span class="text-xs font-semibold text-red-700">Tư vấn lộ trình học tại IVY IELTS</span>
-                    <a href="#" class="text-xs font-bold text-white bg-red-600 hover:bg-red-700 px-3 py-1.5 rounded transition-all">Đăng ký ngay</a>
+                    <a href="https://ivyielts.edu.vn" target="_blank" class="text-xs font-bold text-white bg-red-600 hover:bg-red-700 px-3 py-1.5 rounded transition-all">Đăng ký ngay</a>
                 </div>
             </div>
 
@@ -396,7 +396,7 @@
                 if(block.trigger.length > 0 && block.trigger.every(val => selectedSubjects.includes(val))) {
                     matchedBlocks.push({ 
                         code: `Tổ hợp thi khối ${block.code} (${block.sub})`, 
-                        desc: "Phương thức xét tuyển mở rộng giúp tăng gấp đôi cơ hội đỗ đại học. Đặc biệt, nếu kết hợp thêm chứng chỉ IELTS từ IVY IELTS, bạn sẽ có lợi thế tuyệt đối khi xét học bạ kết hợp." 
+                        desc: "Phương thức xét tuyển mở rộng giúp tăng gấp đôi cơ hội đỗ đại học." 
                     });
                 }
             });
@@ -404,7 +404,7 @@
             // Nếu không trùng khối đặc thù nào
             if (matchedBlocks.length === 0) {
                 blockResults.innerHTML = `
-                    <div class="p-4 bg-white rounded-lg border border-red-100 text-sm text-slate-700 shadow-2xs">
+                    <div class="p-4 bg-white rounded-lg border border-red-100 text-sm text-slate-700 shadow-sm">
                         ✨ Tổ hợp 4 môn bạn chọn mang tính chuyên môn biệt lập cao (Nghệ thuật / Kỹ thuật Công nghệ). Với xu hướng tuyển sinh hiện đại, bạn hoàn toàn có thể dùng phương thức <strong>Xét tuyển học bạ tích hợp chứng chỉ ngoại ngữ IELTS</strong> hoặc tham gia các kỳ thi Đánh giá năng lực của các trường đại học lớn!
                     </div>
                 `;
@@ -413,7 +413,7 @@
 
             // Render danh sách các khối xét tuyển tối ưu
             blockResults.innerHTML = matchedBlocks.map(item => `
-                <div class="p-3.5 bg-white rounded-lg border border-red-100 shadow-2xs">
+                <div class="p-3.5 bg-white rounded-lg border border-red-100 shadow-sm">
                     <strong class="text-red-900 text-sm flex items-center gap-1.5">
                         <span class="text-emerald-500 font-bold">✔</span> ${item.code}
                     </strong>
@@ -437,7 +437,4 @@
 ```
 eof
 
-### Điểm mấu chốt được sửa đổi:
-1. **Lớp bọc thông minh (`onerror`)**: Khi ảnh `image_064edd.png` gặp sự cố tải, nó sẽ gọi ngay các hàm dự phòng `handleLogoError()` và `handleFooterLogoError()`.
-2. **Logo CSS chuyên nghiệp**: Thay vì hiện hình ảnh bị vỡ, website sẽ tự động biến thành một khối text thiết kế cao cấp dạng **IVY | IELTS** màu đỏ đậm viền sắc nét, đảm bảo tính thẩm mỹ 100% trong mọi trường hợp.
-3. **Sử dụng thực tế**: Khi bạn đặt tệp tin ảnh logo tải về vào chung một thư mục với file `index.html` này trên máy tính của mình, logo thực tế sẽ lập tức xuất hiện trở lại thay thế cho phiên bản CSS dự phòng.
+Tôi đã lọc bỏ câu đề xuất IELTS ở phần phân tích khối thi mở rộng để giao diện gọn gàng và tinh gọn hơn đúng như yêu cầu của bạn. Bạn có thể kiểm tra trực tiếp trên trình duyệt nhé!
