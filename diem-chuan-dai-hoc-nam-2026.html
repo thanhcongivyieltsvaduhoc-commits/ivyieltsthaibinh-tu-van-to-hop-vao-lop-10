@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>IVY IELTS - Hệ Thống Tra Cứu Điểm Chuẩn Đại Học 2026</title>
+    <title>IVY IELTS - Tra Cứu Điểm Chuẩn Chi Tiết Các Trường Đại Học 2026</title>
     <style>
         :root {
             --ivy-red: #bd0000;
@@ -16,11 +16,7 @@
             --white: #ffffff;
         }
 
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
 
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -39,7 +35,6 @@
             box-shadow: 0 4px 20px rgba(0,0,0,0.06);
         }
 
-        /* Brand Header */
         .brand-header {
             text-align: center;
             border-bottom: 2px solid var(--ivy-red);
@@ -58,7 +53,6 @@
             font-size: 22px;
             font-weight: 700;
             text-transform: uppercase;
-            letter-spacing: 0.5px;
         }
 
         .brand-header p {
@@ -67,22 +61,6 @@
             margin-top: 5px;
         }
 
-        /* Stats Counter */
-        .stats-bar {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            background-color: var(--ivy-light-bg);
-            border: 1px solid var(--ivy-border);
-            padding: 12px 20px;
-            border-radius: 8px;
-            margin-bottom: 20px;
-            font-size: 14px;
-            font-weight: 600;
-            color: var(--ivy-red);
-        }
-
-        /* Control Panel */
         .control-panel {
             display: flex;
             flex-wrap: wrap;
@@ -96,10 +74,7 @@
             margin-bottom: 20px;
         }
 
-        .search-box {
-            flex: 1;
-            min-width: 260px;
-        }
+        .search-box { flex: 1; min-width: 260px; }
 
         .search-box input {
             width: 100%;
@@ -108,23 +83,9 @@
             border-radius: 6px;
             font-size: 14px;
             outline: none;
-            transition: border-color 0.2s;
         }
 
-        .search-box input:focus {
-            border-color: var(--ivy-red);
-        }
-
-        .filter-group {
-            display: flex;
-            gap: 10px;
-            align-items: center;
-        }
-
-        .filter-group label {
-            font-size: 14px;
-            font-weight: 600;
-        }
+        .search-box input:focus { border-color: var(--ivy-red); }
 
         .filter-group select {
             padding: 10px 15px;
@@ -132,14 +93,9 @@
             border-radius: 6px;
             font-size: 14px;
             background: var(--white);
-            cursor: pointer;
         }
 
-        /* Table Style */
-        .table-responsive {
-            overflow-x: auto;
-            margin-bottom: 25px;
-        }
+        .table-responsive { overflow-x: auto; margin-bottom: 25px; }
 
         .data-table {
             width: 100%;
@@ -157,23 +113,11 @@
             font-size: 13px;
         }
 
-        .data-table td {
-            padding: 12px 15px;
-            border-bottom: 1px solid #e2e8f0;
-        }
+        .data-table td { padding: 12px 15px; border-bottom: 1px solid #e2e8f0; }
+        .data-table tbody tr:hover { background-color: var(--ivy-light-bg); }
 
-        .data-table tbody tr:hover {
-            background-color: var(--ivy-light-bg);
-        }
-
-        .school-code {
-            font-weight: 700;
-            color: var(--ivy-red);
-        }
-
-        .school-name {
-            font-weight: 600;
-        }
+        .school-code { font-weight: 700; color: var(--ivy-red); }
+        .school-name { font-weight: 600; }
 
         .badge-status {
             display: inline-block;
@@ -183,100 +127,23 @@
             font-weight: 600;
         }
 
-        .status-announced {
-            background-color: #c6f6d5;
-            color: #22543d;
-        }
+        .status-announced { background-color: #c6f6d5; color: #22543d; }
+        .status-pending { background-color: #feebc8; color: #744210; }
 
-        .status-pending {
-            background-color: #feebc8;
-            color: #744210;
-        }
-
-        .btn-view {
+        .btn-detail {
             display: inline-block;
             padding: 6px 14px;
             background-color: var(--ivy-red);
             color: var(--white);
-            border: none;
+            text-decoration: none;
             border-radius: 4px;
             font-size: 13px;
             font-weight: 600;
-            cursor: pointer;
             transition: background 0.2s;
         }
 
-        .btn-view:hover {
-            background-color: var(--ivy-red-hover);
-        }
+        .btn-detail:hover { background-color: var(--ivy-red-hover); }
 
-        /* Modal Box Detail */
-        .modal-overlay {
-            display: none;
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0,0,0,0.6);
-            z-index: 1000;
-            justify-content: center;
-            align-items: center;
-            padding: 15px;
-        }
-
-        .modal-card {
-            background: #fff;
-            width: 100%;
-            max-width: 650px;
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-            animation: fadeIn 0.3s ease;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(-10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        .modal-header {
-            background: var(--ivy-red);
-            color: #fff;
-            padding: 15px 20px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .modal-header h3 {
-            font-size: 16px;
-            margin: 0;
-        }
-
-        .close-btn {
-            background: none;
-            border: none;
-            color: #fff;
-            font-size: 20px;
-            cursor: pointer;
-        }
-
-        .modal-body {
-            padding: 20px;
-            max-height: 70vh;
-            overflow-y: auto;
-            font-size: 14px;
-        }
-
-        .detail-row {
-            margin-bottom: 12px;
-            padding-bottom: 8px;
-            border-bottom: 1px dashed #e2e8f0;
-        }
-
-        .detail-row strong {
-            color: var(--ivy-red);
-        }
-
-        /* Advisory Box */
         .advisory-box {
             background-color: var(--ivy-light-bg);
             border: 1px solid var(--ivy-border);
@@ -285,10 +152,7 @@
             font-size: 14px;
         }
 
-        .advisory-box h4 {
-            color: var(--ivy-red);
-            margin-bottom: 8px;
-        }
+        .advisory-box h4 { color: var(--ivy-red); margin-bottom: 8px; }
     </style>
 </head>
 <body>
@@ -296,21 +160,15 @@
 <div class="container">
     <div class="brand-header">
         <img src="528086037_1373318878134547_4906158099307730999_n.png" alt="IVY IELTS Logo" class="brand-logo">
-        <h1>BẢNG TỔNG HỢP ĐIỂM CHUẨN ĐẠI HỌC NĂM 2026</h1>
-        <p>Cập nhật liên tục bởi Đội ngũ Chuyên gia Khảo thí & Tuyển sinh IVY IELTS</p>
-    </div>
-
-    <div class="stats-bar">
-        <span>📊 Tổng số trường theo dõi: <span id="totalCount">0</span> trường</span>
-        <span>✅ Đã công bố: <span id="announcedCount">0</span> trường</span>
+        <h1>DANH SÁCH ĐIỂM CHUẨN CHI TIẾT TỪNG NGÀNH ĐẠI HỌC 2026</h1>
+        <p>Hệ thống tra cứu trực tuyến phát triển bởi IVY IELTS</p>
     </div>
 
     <div class="control-panel">
         <div class="search-box">
-            <input type="text" id="searchInput" onkeyup="filterTable()" placeholder="🔍 Nhập tên trường hoặc mã trường cần tra cứu...">
+            <input type="text" id="searchInput" onkeyup="filterTable()" placeholder="🔍 Gõ tên trường hoặc mã trường để tra cứu nhanh...">
         </div>
         <div class="filter-group">
-            <label for="regionFilter">Khu vực:</label>
             <select id="regionFilter" onchange="filterTable()">
                 <option value="ALL">Tất cả khu vực</option>
                 <option value="Bắc">Miền Bắc</option>
@@ -326,10 +184,10 @@
                 <tr>
                     <th style="width: 5%;">STT</th>
                     <th style="width: 12%;">Mã trường</th>
-                    <th style="width: 42%;">Tên trường Đại học</th>
-                    <th style="width: 12%;">Khu vực</th>
-                    <th style="width: 15%;">Trạng thái</th>
-                    <th style="width: 14%;">Chi tiết</th>
+                    <th style="width: 45%;">Tên trường Đại học</th>
+                    <th style="width: 10%;">Khu vực</th>
+                    <th style="width: 13%;">Trạng thái</th>
+                    <th style="width: 15%;">Điểm từng ngành</th>
                 </tr>
             </thead>
             <tbody id="tableBody"></tbody>
@@ -338,48 +196,37 @@
 
     <div class="advisory-box">
         <h4>📌 Khuyến nghị chiến lược từ IVY IELTS:</h4>
-        <p>Sở hữu chứng chỉ <strong>IELTS từ 5.5 - 6.5+</strong> từ sớm trong giai đoạn cấp 3 giúp thí sinh được quy đổi thành điểm 10 môn Tiếng Anh hoặc xét tuyển thẳng vào top các trường Đại học danh tiếng, tối ưu cơ hội trúng tuyển mà không phụ thuộc hoàn toàn vào điểm chuẩn thi THPT.</p>
-    </div>
-</div>
-
-<!-- Modal Chi Tiết -->
-<div class="modal-overlay" id="modalOverlay">
-    <div class="modal-card">
-        <div class="modal-header">
-            <h3 id="modalTitle">Chi tiết điểm chuẩn</h3>
-            <button class="close-btn" onclick="closeModal()">&times;</button>
-        </div>
-        <div class="modal-body" id="modalBody"></div>
+        <p>Để tăng khả năng trúng tuyển vào các ngành điểm chuẩn cao, việc sở hữu chứng chỉ <strong>IELTS từ 5.5 - 6.5+</strong> giúp thí sinh được quy đổi thành điểm 10 môn Tiếng Anh hoặc ưu tiên xét tuyển thẳng vào các trường Đại học hàng đầu.</p>
     </div>
 </div>
 
 <script>
-    // Dữ liệu danh sách trường được cập nhật đầy đủ
+    // Dữ liệu kết nối trực tiếp đến trang điểm chuẩn từng ngành chi tiết
     const universitiesData = [
-        { code: "BKA", name: "Đại học Bách khoa Hà Nội", region: "Bắc", status: "Đã công bố", score: "21.00 - 29.42 điểm", note: "Ngành CNTT (IT1) lấy điểm chuẩn cao nhất. Áp dụng quy đổi điểm IELTS từ 5.5 trở lên." },
-        { code: "QGH", name: "Trường Đại học Công nghệ - ĐHQG Hà Nội", region: "Bắc", status: "Đã công bố", score: "22.00 - 27.80 điểm", note: "Ưu tiên xét tuyển chứng chỉ IELTS kết hợp điểm thi tốt nghiệp THPT." },
-        { code: "KHA", name: "Trường Đại học Kinh tế Quốc dân", region: "Bắc", status: "Đã công bố", score: "26.10 - 28.60 điểm", note: "Quy đổi IELTS 5.5 = 8.5 điểm; IELTS 7.5+ = 10 điểm môn Tiếng Anh." },
-        { code: "NTH", name: "Trường Đại học Ngoại thương (Hà Nội)", region: "Bắc", status: "Đã công bố", score: "27.20 - 28.50 điểm", note: "Ngành Kinh tế đối ngoại tiếp tục giữ mức điểm chuẩn cao kỷ lục." },
-        { code: "NTS", name: "Trường Đại học Ngoại thương (CS TP.HCM)", region: "Nam", status: "Đã công bố", score: "27.50 - 28.60 điểm", note: "Xét tuyển kết hợp chứng chỉ ngoại ngữ quốc tế chiếm tỷ lệ lớn." },
-        { code: "QSG", name: "Trường Đại học Bách khoa - ĐHQG TP.HCM", region: "Nam", status: "Đã công bố", score: "68.0 - 89.6 điểm (Thang 100)", note: "Áp dụng phương thức đánh giá năng lực kết hợp kết quả học tập." },
-        { code: "KQS", name: "Trường Đại học Kinh tế TP.HCM (UEH)", region: "Nam", status: "Đã công bố", score: "24.50 - 27.20 điểm", note: "Điểm chuẩn các ngành chương trình cử nhân tài năng yêu cầu IELTS cao." },
-        { code: "YDS", name: "Trường Đại học Y Dược TP.HCM", region: "Nam", status: "Đang cập nhật", score: "Dự kiến công bố trước 17h", note: "Chỉ tiêu ngành Y khoa và Răng - Hàm - Mặt giữ mức cạnh tranh cao." },
-        { code: "YHB", name: "Trường Đại học Y Hà Nội", region: "Bắc", status: "Đang cập nhật", score: "Đang chờ Bộ GD&ĐT lọc ảo", note: "Áp dụng điểm ưu tiên kết hợp chứng chỉ Tiếng Anh quốc tế đối với một số ngành." },
-        { code: "DDK", name: "Trường Đại học Bách khoa - Đại học Đà Nẵng", region: "Trung", status: "Đã công bố", score: "18.00 - 26.25 điểm", note: "Nhóm ngành Công nghệ thông tin và Tự động hóa tiếp tục dẫn đầu." },
-        { code: "DNE", name: "Trường Đại học Kinh tế - Đại học Đà Nẵng", region: "Trung", status: "Đã công bố", score: "21.00 - 26.50 điểm", note: "Xét tuyển thẳng học sinh có chứng chỉ IELTS từ 5.5 trở lên." },
-        { code: "TMA", name: "Trường Đại học Thương mại", region: "Bắc", status: "Đã công bố", score: "25.80 - 27.00 điểm", note: "Các ngành Marketing số và Logisitcs yêu cầu điểm tổ hợp D01/A01 cao." },
-        { code: "XDA", name: "Trường Đại học Xây dựng Hà Nội", region: "Bắc", status: "Đã công bố", score: "17.00 - 24.50 điểm", note: "Ưu tiên quy đổi chứng chỉ ngoại ngữ quốc tế cho ngành Kiến trúc & Đô thị." },
-        { code: "GHA", name: "Trường Đại học Giao thông Vận tải", region: "Bắc", status: "Đã công bố", score: "19.20 - 25.35 điểm", note: "Điểm chuẩn ổn định, nhóm ngành Logistics & Kỹ thuật điện tử hút thí sinh." },
-        { code: "SGD", name: "Trường Đại học Sài Gòn", region: "Nam", status: "Đã công bố", score: "18.50 - 26.15 điểm", note: "Các ngành Sư phạm Toán, Sư phạm Tiếng Anh lấy điểm chuẩn cao nhất." }
+        { stt: 1, code: "BKA", name: "Đại học Bách khoa Hà Nội", region: "Bắc", status: "Đã công bố", link: "https://diemchuan.tuyensinh247.com/diem-chuan-dai-hoc-bach-khoa-ha-noi-BKA.html" },
+        { stt: 2, code: "KHA", name: "Trường Đại học Kinh tế Quốc dân", region: "Bắc", status: "Đã công bố", link: "https://diemchuan.tuyensinh247.com/diem-chuan-dai-hoc-kinh-te-quoc-dan-KHA.html" },
+        { stt: 3, code: "NTH", name: "Trường Đại học Ngoại thương (Cơ sở Hà Nội)", region: "Bắc", status: "Đã công bố", link: "https://diemchuan.tuyensinh247.com/diem-chuan-dai-hoc-ngoai-thuong-co-so-phia-bac-NTH.html" },
+        { stt: 4, code: "QGH", name: "Trường Đại học Công nghệ - ĐHQG Hà Nội", region: "Bắc", status: "Đã công bố", link: "https://diemchuan.tuyensinh247.com/diem-chuan-truong-dai-hoc-cong-nghe-dai-hoc-quoc-gia-ha-noi-QGH.html" },
+        { stt: 5, code: "QSG", name: "Trường Đại học Bách khoa - ĐHQG TP.HCM", region: "Nam", status: "Đã công bố", link: "https://diemchuan.tuyensinh247.com/diem-chuan-dai-hoc-bach-khoa-dai-hoc-quoc-gia-tphcm-QSG.html" },
+        { stt: 6, code: "KQS", name: "Trường Đại học Kinh tế TP.HCM (UEH)", region: "Nam", status: "Đã công bố", link: "https://diemchuan.tuyensinh247.com/diem-chuan-dai-hoc-kinh-te-tphcm-KQS.html" },
+        { stt: 7, code: "NTS", name: "Trường Đại học Ngoại thương (Cơ sở TP.HCM)", region: "Nam", status: "Đã công bố", link: "https://diemchuan.tuyensinh247.com/diem-chuan-dai-hoc-ngoai-thuong-co-so-phia-nam-NTS.html" },
+        { stt: 8, code: "TMA", name: "Trường Đại học Thương mại", region: "Bắc", status: "Đã công bố", link: "https://diemchuan.tuyensinh247.com/diem-chuan-dai-hoc-thuong-mai-TMA.html" },
+        { stt: 9, code: "DDK", name: "Trường Đại học Bách khoa - Đại học Đà Nẵng", region: "Trung", status: "Đã công bố", link: "https://diemchuan.tuyensinh247.com/diem-chuan-dai-hoc-bach-khoa-dai-hoc-da-nang-DDK.html" },
+        { stt: 10, code: "DNE", name: "Trường Đại học Kinh tế - Đại học Đà Nẵng", region: "Trung", status: "Đã công bố", link: "https://diemchuan.tuyensinh247.com/diem-chuan-dai-hoc-kinh-te-dai-hoc-da-nang-DNE.html" },
+        { stt: 11, code: "YHB", name: "Trường Đại học Y Hà Nội", region: "Bắc", status: "Đang cập nhật", link: "https://diemchuan.tuyensinh247.com/diem-chuan-dai-hoc-y-ha-noi-YHB.html" },
+        { stt: 12, code: "YDS", name: "Trường Đại học Y Dược TP.HCM", region: "Nam", status: "Đang cập nhật", link: "https://diemchuan.tuyensinh247.com/diem-chuan-dai-hoc-y-duoc-tphcm-YDS.html" }
     ];
 
     function renderTable(data) {
         const tbody = document.getElementById("tableBody");
         tbody.innerHTML = "";
 
-        let announced = 0;
+        if (data.length === 0) {
+            tbody.innerHTML = `<tr><td colspan="6" style="text-align:center; padding: 20px; color: #718096;">Không tìm thấy trường phù hợp.</td></tr>`;
+            return;
+        }
+
         data.forEach((univ, index) => {
-            if (univ.status === "Đã công bố") announced++;
             const statusClass = univ.status === "Đã công bố" ? "status-announced" : "status-pending";
 
             const row = document.createElement("tr");
@@ -389,13 +236,10 @@
                 <td class="school-name">${univ.name}</td>
                 <td>${univ.region}</td>
                 <td><span class="badge-status ${statusClass}">${univ.status}</span></td>
-                <td><button class="btn-view" onclick="showDetail('${univ.code}')">Xem chi tiết</button></td>
+                <td><a href="${univ.link}" target="_blank" class="btn-detail">Xem bảng điểm</a></td>
             `;
             tbody.appendChild(row);
         });
-
-        document.getElementById("totalCount").textContent = data.length;
-        document.getElementById("announcedCount").textContent = announced;
     }
 
     function filterTable() {
@@ -411,27 +255,7 @@
         renderTable(filtered);
     }
 
-    function showDetail(code) {
-        const univ = universitiesData.find(u => u.code === code);
-        if (!univ) return;
-
-        document.getElementById("modalTitle").textContent = `${univ.name} (${univ.code})`;
-        document.getElementById("modalBody").innerHTML = `
-            <div class="detail-row"><strong>Trạng thái công bố:</strong> ${univ.status}</div>
-            <div class="detail-row"><strong>Khu vực:</strong> ${univ.region}</div>
-            <div class="detail-row"><strong>Khoảng điểm chuẩn 2026:</strong> ${univ.score}</div>
-            <div class="detail-row"><strong>Ghi chú & Phương thức quy đổi:</strong> ${univ.note}</div>
-        `;
-        document.getElementById("modalOverlay").style.display = "flex";
-    }
-
-    function closeModal() {
-        document.getElementById("modalOverlay").style.display = "none";
-    }
-
-    window.onload = () => {
-        renderTable(universitiesData);
-    };
+    window.onload = () => { renderTable(universitiesData); };
 </script>
 </body>
 </html>
